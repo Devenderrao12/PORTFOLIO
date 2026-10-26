@@ -1,844 +1,886 @@
-```html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Devender Kumar's professional portfolio">
-  <title>Devender Kumar | Portfolio</title>
-
-  <style>
-    :root {
-      --bg: #0b1120;
-      --surface: #111c30;
-      --surface2: #16233a;
-      --text: #f1f5f9;
-      --muted: #aab6c9;
-      --accent: #38bdf8;
-      --border: #293851;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.7;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    button {
-      font: inherit;
-    }
-
-    .container {
-      width: min(1120px, 90%);
-      margin: 0 auto;
-    }
-
-    section {
-      padding: 80px 0;
-      scroll-margin-top: 80px;
-    }
-
-    .section-alt {
-      background: var(--surface2);
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: clamp(28px, 4vw, 38px);
-      margin-bottom: 38px;
-      line-height: 1.3;
-    }
-
-    .section-title span,
-    .logo span,
-    .hero h1 span {
-      color: var(--accent);
-    }
-
-    /* NAVIGATION */
-
-    .header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(11, 17, 32, 0.96);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(12px);
-    }
-
-    .navbar {
-      min-height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .logo {
-      font-size: 25px;
-      font-weight: 800;
-      white-space: nowrap;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 19px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 14px;
-      color: var(--muted);
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover {
-      color: var(--accent);
-    }
-
-    .menu-toggle {
-      display: none;
-      background: transparent;
-      color: var(--text);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 4px 12px;
-      font-size: 24px;
-      cursor: pointer;
-    }
-
-    /* HOME SECTION */
-
-    .hero {
-      min-height: 85vh;
-      display: flex;
-      align-items: center;
-      padding-top: 55px;
-      padding-bottom: 55px;
-    }
-
-    .hero-content {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 55px;
-    }
-
-    .hero-text {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .eyebrow {
-      color: var(--accent);
-      font-size: 13px;
-      font-weight: bold;
-      letter-spacing: 2px;
-    }
-
-    .hero h1 {
-      font-size: clamp(36px, 4.7vw, 59px);
-      line-height: 1.2;
-      margin: 14px 0;
-    }
-
-    .hero h2 {
-      font-size: clamp(20px, 2.5vw, 28px);
-      font-weight: 500;
-    }
-
-    .hero-description {
-      max-width: 620px;
-      color: var(--muted);
-      margin-top: 20px;
-    }
-
-    .hero-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 28px;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 11px 22px;
-      border: 2px solid var(--accent);
-      border-radius: 8px;
-      background: var(--accent);
-      color: #07111f;
-      font-weight: bold;
-      transition: transform 0.2s, opacity 0.2s;
-      cursor: pointer;
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-      opacity: 0.9;
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--accent);
-    }
-
-    .social-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 22px;
-      margin-top: 24px;
-    }
-
-    .social-links a {
-      color: var(--muted);
-    }
-
-    .social-links a:hover {
-      color: var(--accent);
-    }
-
-    /* YOUR PHOTO IN A CIRCLE */
-
-    .hero-image {
-      flex: 0 0 310px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .photo-frame {
-      width: 290px;
-      height: 290px;
-      padding: 6px;
-      border: 4px solid var(--accent);
-      border-radius: 50%;
-      overflow: hidden;
-      background: var(--surface);
-      box-shadow: 0 0 35px rgba(56, 189, 248, 0.22);
-    }
-
-    .profile-photo {
-      display: block;
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      object-fit: cover;
-      object-position: center;
-    }
-
-    /* ABOUT */
-
-    .about-card {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 30px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      color: var(--muted);
-    }
-
-    /* EXPERIENCE AND PROJECTS */
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 22px;
-    }
-
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 25px;
-      transition: transform 0.2s, border-color 0.2s;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      border-color: var(--accent);
-    }
-
-    .card h3 {
-      font-size: 20px;
-      margin-bottom: 8px;
-    }
-
-    .card p {
-      color: var(--muted);
-    }
-
-    .company {
-      color: var(--accent) !important;
-      font-size: 14px;
-      margin-bottom: 12px;
-    }
-
-    .tag {
-      display: inline-block;
-      color: var(--accent);
-      background: rgba(56, 189, 248, 0.12);
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: bold;
-      margin-bottom: 12px;
-    }
-
-    .project-number {
-      color: var(--accent);
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-
-    /* SKILLS */
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 15px;
-    }
-
-    .skill {
-      text-align: center;
-      padding: 16px 10px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      transition: 0.2s;
-    }
-
-    .skill:hover {
-      color: var(--accent);
-      border-color: var(--accent);
-      transform: translateY(-3px);
-    }
-
-    /* CERTIFICATES: NAMES ONLY */
-
-    .certificate-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .certificate {
-      padding: 20px;
-      text-align: center;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      font-weight: 600;
-    }
-
-    /* CONTACT */
-
-    .contact-card {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 35px 25px;
-      text-align: center;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-    }
-
-    .contact-card p {
-      color: var(--muted);
-      margin-bottom: 22px;
-    }
-
-    .contact-note {
-      font-size: 13px;
-      margin-top: 20px;
-    }
-
-    /* FOOTER AND BACK TO TOP */
-
-    .footer {
-      padding: 25px 0;
-      text-align: center;
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-    }
-
-    .back-to-top {
-      position: fixed;
-      right: 22px;
-      bottom: 22px;
-      display: none;
-      width: 44px;
-      height: 44px;
-      background: var(--accent);
-      color: #07111f;
-      border: none;
-      border-radius: 50%;
-      font-size: 24px;
-      font-weight: bold;
-      cursor: pointer;
-      z-index: 50;
-    }
-
-    .back-to-top.visible {
-      display: block;
-    }
-
-    /* RESPONSIVE DESIGN */
-
-    @media (max-width: 900px) {
-      .menu-toggle {
-        display: block;
-      }
-
-      .navbar {
-        flex-wrap: wrap;
-        padding-top: 12px;
-        padding-bottom: 12px;
-      }
-
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        align-items: flex-start;
-        width: 100%;
-        gap: 12px;
-        padding: 10px 0;
-      }
-
-      .nav-links.open {
-        display: flex;
-      }
-
-      .hero-content {
-        gap: 30px;
-      }
-
-      .hero-image {
-        flex-basis: 250px;
-      }
-
-      .photo-frame {
-        width: 235px;
-        height: 235px;
-      }
-
-      .skills-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 620px) {
-      section {
-        padding: 58px 0;
-      }
-
-      .hero {
-        min-height: auto;
-        padding-top: 45px;
-        padding-bottom: 55px;
-      }
-
-      .hero-content {
-        flex-direction: column-reverse;
-        text-align: center;
-      }
-
-      .hero-image {
-        flex: 0 0 auto;
-      }
-
-      .photo-frame {
-        width: 215px;
-        height: 215px;
-      }
-
-      .hero-buttons,
-      .social-links {
-        justify-content: center;
-      }
-
-      .card-grid,
-      .certificate-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .skills-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .about-card {
-        padding: 22px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Devender Kumar's portfolio - Computer Science, Python, Artificial Intelligence and Machine Learning projects.">
+    <title>Devender Kumar | Portfolio</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --bg: #0b1120;
+            --card: #121c30;
+            --primary: #38bdf8;
+            --secondary: #818cf8;
+            --text: #f1f5f9;
+            --muted: #a8b3c7;
+            --border: #26354d;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: min(1100px, 90%);
+            margin: auto;
+        }
+
+        /* NAVIGATION */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(11, 17, 32, 0.95);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(12px);
+        }
+
+        nav {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .menu-btn {
+            display: none;
+            border: none;
+            background: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 88vh;
+            display: flex;
+            align-items: center;
+            padding: 70px 0;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+            width: 100%;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 6px 14px;
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            color: var(--primary);
+            background: var(--card);
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(38px, 6vw, 65px);
+            line-height: 1.15;
+            margin-bottom: 14px;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero h2 {
+            font-size: clamp(19px, 3vw, 27px);
+            color: var(--secondary);
+            margin-bottom: 18px;
+        }
+
+        .hero p {
+            color: var(--muted);
+            max-width: 600px;
+            margin-bottom: 28px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 11px 22px;
+            border-radius: 8px;
+            font-weight: bold;
+            border: 1px solid var(--primary);
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #07111f;
+        }
+
+        .btn-outline {
+            color: var(--primary);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.15);
+        }
+
+        .profile-wrap {
+            flex-shrink: 0;
+            width: 290px;
+            height: 290px;
+            padding: 7px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            box-shadow: 0 0 45px rgba(56, 189, 248, 0.15);
+        }
+
+        .profile-wrap img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--bg);
+            display: block;
+        }
+
+        /* COMMON SECTIONS */
+        section {
+            padding: 85px 0;
+            scroll-margin-top: 70px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-size: clamp(28px, 4vw, 38px);
+            margin-bottom: 10px;
+        }
+
+        .section-title h2 span {
+            color: var(--primary);
+        }
+
+        .section-title p {
+            color: var(--muted);
+        }
+
+        .about-content {
+            max-width: 850px;
+            margin: auto;
+            text-align: center;
+            color: var(--muted);
+            font-size: 17px;
+        }
+
+        .about-content p + p {
+            margin-top: 15px;
+        }
+
+        /* CARDS */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 25px;
+            transition: 0.3s;
+            min-width: 0;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+
+        .card p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .card .date {
+            display: inline-block;
+            font-size: 12px;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .card-link {
+            display: inline-block;
+            color: var(--primary);
+            font-size: 14px;
+            margin-top: 16px;
+        }
+
+        /* SKILLS */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px;
+        }
+
+        .skill {
+            padding: 12px 20px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            color: var(--text);
+            transition: 0.3s;
+        }
+
+        .skill:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* CONTACT */
+        .contact-card {
+            max-width: 700px;
+            margin: auto;
+            padding: 35px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .contact-card > p {
+            color: var(--muted);
+            margin-bottom: 25px;
+        }
+
+        .contact-item {
+            padding: 14px;
+            border-bottom: 1px solid var(--border);
+            overflow-wrap: anywhere;
+        }
+
+        .contact-item:last-of-type {
+            border-bottom: none;
+            margin-bottom: 22px;
+        }
+
+        .contact-item strong {
+            color: var(--primary);
+            margin-right: 8px;
+        }
+
+        .contact-item a:hover {
+            color: var(--primary);
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        footer {
+            padding: 25px 0;
+            text-align: center;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        #backToTop {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 44px;
+            height: 44px;
+            border: none;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #07111f;
+            font-size: 22px;
+            cursor: pointer;
+            display: none;
+            z-index: 999;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 850px) {
+            .hero-content {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 35px;
+            }
+
+            .hero-text p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .profile-wrap {
+                width: 230px;
+                height: 230px;
+            }
+
+            .cards {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 72px;
+                left: 0;
+                right: 0;
+                padding: 20px 5%;
+                background: var(--bg);
+                border-bottom: 1px solid var(--border);
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 18px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 65px 0;
+            }
+
+            .contact-card {
+                padding: 22px 16px;
+            }
+
+            .profile-wrap {
+                width: 195px;
+                height: 195px;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 65px 0;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-  <!-- NAVIGATION -->
-  <header class="header">
-    <nav class="navbar container">
-      <a class="logo" href="#home">Devender<span>.</span></a>
+    <!-- NAVIGATION -->
+    <header>
+        <nav class="container">
+            <a href="#home" class="logo">Devender.</a>
 
-      <button
-        type="button"
-        class="menu-toggle"
-        id="menuToggle"
-        aria-label="Toggle navigation"
-        aria-expanded="false">
-        ☰
-      </button>
+            <button class="menu-btn" id="menuBtn"
+                    aria-label="Toggle navigation" aria-expanded="false">
+                ☰
+            </button>
 
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#certificates">Certificates</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certificates">Certificates</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <main>
+    <main>
 
-    <!-- HOME -->
-    <section class="hero container" id="home">
-      <div class="hero-content">
+        <!-- HERO SECTION -->
+        <section class="hero" id="home">
+            <div class="container hero-content">
 
-        <div class="hero-text">
-          <p class="eyebrow">HELLO, WELCOME TO MY PORTFOLIO</p>
+                <div class="hero-text">
+                    <span class="tag">Welcome to My Portfolio</span>
 
-          <h1>Hi, I'm <span>Devender Kumar</span></h1>
+                    <h1>Hi, I'm <span>Devender Kumar</span></h1>
 
-          <h2>Computer Science Graduate</h2>
+                    <h2>Computer Science Graduate</h2>
 
-          <p class="hero-description">
-            I am a motivated professional interested in technology,
-            Python programming, data analytics, artificial intelligence
-            and digital marketing. I enjoy learning new skills,
-            solving problems and developing practical projects.
-          </p>
+                    <p>
+                        I am interested in Python programming, Artificial Intelligence,
+                        Machine Learning, and software development. I enjoy learning
+                        new technologies and building practical projects to improve
+                        my technical skills.
+                    </p>
 
-          <div class="hero-buttons">
-            <a href="resume.pdf" class="btn" download>
-              Download Resume
-            </a>
-            <a href="#contact" class="btn btn-outline">
-              Contact Me
-            </a>
-          </div>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-primary">
+                            View My Projects
+                        </a>
 
-          <div class="social-links">
-            <!-- Replace these with your actual profile URLs -->
-            <a href="https://github.com/"
-               target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a href="https://www.linkedin.com/"
-               target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          </div>
+                        <a href="resume.pdf" class="btn btn-outline"
+                           target="_blank" rel="noopener">
+                            View Resume
+                        </a>
+
+                        <a href="#contact" class="btn btn-outline">
+                            Contact Me
+                        </a>
+                    </div>
+                </div>
+
+                <div class="profile-wrap">
+                    <img src="devender.jpg"
+                         alt="Devender Kumar profile photo">
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about">
+            <div class="container">
+                <div class="section-title">
+                    <h2>About <span>Me</span></h2>
+                    <p>Get to know me</p>
+                </div>
+
+                <div class="about-content">
+                    <p>
+                        I am Devender Kumar, a Computer Science and Engineering
+                        graduate from Apex University, Jaipur. My technical interests
+                        include Python, SQL, Artificial Intelligence, Machine Learning,
+                        and web technologies.
+                    </p>
+
+                    <p>
+                        I have worked on learning projects involving programming,
+                        computer vision, recommendation systems, and web development.
+                        I aim to strengthen my fundamentals, solve practical problems,
+                        and continue growing as a technology professional.
+                    </p>
+
+                    <p>
+                        I value continuous learning, teamwork, adaptability, and
+                        responsible work. I am open to suitable opportunities where
+                        I can contribute my skills and gain practical experience.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS SECTION -->
+        <section id="skills">
+            <div class="container">
+                <div class="section-title">
+                    <h2>My <span>Skills</span></h2>
+                    <p>Technologies and tools I have worked with</p>
+                </div>
+
+                <div class="skills-grid">
+                    <span class="skill">Python</span>
+                    <span class="skill">C Programming</span>
+                    <span class="skill">SQL</span>
+                    <span class="skill">HTML</span>
+                    <span class="skill">CSS</span>
+                    <span class="skill">JavaScript</span>
+                    <span class="skill">Flask</span>
+                    <span class="skill">Machine Learning</span>
+                    <span class="skill">Deep Learning</span>
+                    <span class="skill">OpenCV</span>
+                    <span class="skill">Jupyter Notebook</span>
+                    <span class="skill">VS Code</span>
+                    <span class="skill">GitHub</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE SECTION -->
+        <section id="experience">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Internship <span>Experience</span></h2>
+                    <p>Training and learning experiences</p>
+                </div>
+
+                <div class="cards">
+                    <article class="card">
+                        <h3>Python Development</h3>
+                        <p class="date">OctaNet</p>
+                        <p>
+                            Python development learning experience focused on
+                            programming fundamentals and practical tasks.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Generative AI</h3>
+                        <p class="date">Prodigy Infotech</p>
+                        <p>
+                            Learning experience related to Generative Artificial
+                            Intelligence and practical technology tasks.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Artificial Intelligence</h3>
+                        <p class="date">Studio</p>
+                        <p>
+                            Exposure to Artificial Intelligence concepts and
+                            project-oriented learning activities.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Artificial Intelligence</h3>
+                        <p class="date">CodSoft</p>
+                        <p>
+                            Practice with AI-related concepts and programming
+                            tasks to strengthen technical knowledge.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Python Development</h3>
+                        <p class="date">Technonet</p>
+                        <p>
+                            Python programming practice and development-oriented
+                            learning activities.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION -->
+        <section id="projects">
+            <div class="container">
+                <div class="section-title">
+                    <h2>My <span>Projects</span></h2>
+                    <p>Some projects from my learning journey</p>
+                </div>
+
+                <div class="cards">
+                    <article class="card">
+                        <h3>Smart Attendance System</h3>
+                        <p>
+                            A face-recognition attendance project designed to
+                            identify registered faces and support attendance
+                            record management using Python and OpenCV.
+                        </p>
+                        <a href="https://github.com/" target="_blank"
+                           rel="noopener" class="card-link">
+                            Add Project Repository →
+                        </a>
+                    </article>
+
+                    <article class="card">
+                        <h3>Face Detection</h3>
+                        <p>
+                            A computer vision project exploring face detection
+                            using OpenCV and image-processing techniques.
+                        </p>
+                        <a href="https://github.com/" target="_blank"
+                           rel="noopener" class="card-link">
+                            Add Project Repository →
+                        </a>
+                    </article>
+
+                    <article class="card">
+                        <h3>Recommendation System</h3>
+                        <p>
+                            A project exploring how data and recommendation
+                            techniques can help suggest relevant items to users.
+                        </p>
+                        <a href="https://github.com/" target="_blank"
+                           rel="noopener" class="card-link">
+                            Add Project Repository →
+                        </a>
+                    </article>
+
+                    <article class="card">
+                        <h3>Tic-Tac-Toe Game</h3>
+                        <p>
+                            A Python game project involving game rules,
+                            player turns, win and draw conditions, and input
+                            validation.
+                        </p>
+                        <a href="https://github.com/" target="_blank"
+                           rel="noopener" class="card-link">
+                            Add Project Repository →
+                        </a>
+                    </article>
+
+                    <article class="card">
+                        <h3>QR Code Generator</h3>
+                        <p>
+                            A Python project that generates QR codes from
+                            user-provided text or links.
+                        </p>
+                        <a href="https://github.com/" target="_blank"
+                           rel="noopener" class="card-link">
+                            Add Project Repository →
+                        </a>
+                    </article>
+
+                    <article class="card">
+                        <h3>Personal Portfolio</h3>
+                        <p>
+                            A responsive personal website built with HTML,
+                            CSS, and JavaScript to present skills, projects,
+                            and contact information.
+                        </p>
+                        <a href="#home" class="card-link">
+                            Explore This Website →
+                        </a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- CERTIFICATES SECTION -->
+        <section id="certificates">
+            <div class="container">
+                <div class="section-title">
+                    <h2>My <span>Certificates</span></h2>
+                    <p>Training and professional learning</p>
+                </div>
+
+                <div class="about-content">
+                    <p>
+                        I have undertaken learning and internship activities
+                        related to Python Development, Artificial Intelligence,
+                        and Generative AI.
+                    </p>
+
+                    <p>
+                        Add your actual certificate files or certificate links
+                        below so visitors can verify and view them.
+                    </p>
+                </div>
+
+                <div class="cards" style="margin-top: 30px;">
+                    <article class="card">
+                        <h3>Python Development</h3>
+                        <p>OctaNet / Technonet</p>
+                        <a href="#contact" class="card-link">
+                            Ask for Certificate Details →
+                        </a>
+                    </article>
+
+                    <article class="card">
+                        <h3>Artificial Intelligence</h3>
+                        <p>CodSoft / Studio</p>
+                        <a href="#contact" class="card-link">
+                            Ask for Certificate Details →
+                        </a>
+                    </article>
+
+                    <article class="card">
+                        <h3>Generative AI</h3>
+                        <p>Prodigy Infotech</p>
+                        <a href="#contact" class="card-link">
+                            Ask for Certificate Details →
+                        </a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- RESUME SECTION -->
+        <section id="resume">
+            <div class="container">
+                <div class="section-title">
+                    <h2>My <span>Resume</span></h2>
+                    <p>View my resume for more information</p>
+                </div>
+
+                <div class="about-content">
+                    <p>
+                        You can open my resume to review my education,
+                        technical skills, projects, and experience.
+                    </p>
+
+                    <div style="margin-top: 25px;">
+                        <a href="resume.pdf" target="_blank"
+                           rel="noopener" class="btn btn-primary">
+                            Open Resume PDF
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Contact <span>Me</span></h2>
+                    <p>Let's connect for opportunities and collaboration</p>
+                </div>
+
+                <div class="contact-card">
+                    <p>
+                        Have an opportunity or want to discuss a project?
+                        Feel free to contact me.
+                    </p>
+
+                    <div class="contact-item">
+                        <strong>Phone:</strong>
+                        <a href="tel:+919653571425">9653571425</a>
+                    </div>
+
+                    <div class="contact-item">
+                        <strong>Email:</strong>
+                        <a href="mailto:yadav.devender2005@gmail.com">
+                            yadav.devender2005@gmail.com
+                        </a>
+                    </div>
+
+                    <div class="contact-buttons">
+                        <a href="tel:+919653571425" class="btn btn-primary">
+                            Call Me
+                        </a>
+
+                        <a href="https://wa.me/919653571425"
+                           target="_blank" rel="noopener"
+                           class="btn btn-outline">
+                            WhatsApp
+                        </a>
+
+                        <a href="mailto:yadav.devender2005@gmail.com"
+                           class="btn btn-outline">
+                            Send Email
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>
+                © <span id="year"></span> Devender Kumar.
+                All rights reserved.
+            </p>
         </div>
+    </footer>
 
-        <div class="hero-image">
-          <div class="photo-frame">
-            <!-- devender.jpg must be in the same repository folder -->
-            <img
-              src="devender.jpg"
-              alt="Devender Kumar profile photo"
-              class="profile-photo">
-          </div>
-        </div>
+    <button id="backToTop" aria-label="Back to top">↑</button>
 
-      </div>
-    </section>
+    <script>
+        // Mobile navigation menu
+        const menuBtn = document.getElementById("menuBtn");
+        const navLinks = document.getElementById("navLinks");
 
-    <!-- ABOUT -->
-    <section class="section" id="about">
-      <div class="container">
-        <h2 class="section-title">About <span>Me</span></h2>
-
-        <div class="about-card">
-          <p>
-            I am Devender Kumar, a Computer Science graduate from
-            Apex University, Jaipur. My interests include programming,
-            data analytics, artificial intelligence and digital marketing.
-            I am responsible, adaptable and eager to learn new technologies
-            and improve my professional skills through practical experience.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- EXPERIENCE -->
-    <section class="section section-alt" id="experience">
-      <div class="container">
-        <h2 class="section-title">My <span>Experience</span></h2>
-
-        <div class="card-grid">
-
-          <article class="card">
-            <span class="tag">6 Months</span>
-            <h3>Digital Marketing Executive</h3>
-            <p class="company">Balaji Trading · Real Estate</p>
-            <p>
-              Worked on digital marketing activities, social media
-              promotion and lead generation for a real estate business.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Python Development Intern</h3>
-            <p class="company">OctaNet</p>
-            <p>
-              Gained practical exposure to Python programming,
-              development tasks and problem-solving.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Generative AI Intern</h3>
-            <p class="company">Prodigy</p>
-            <p>
-              Explored generative artificial intelligence concepts
-              and related project activities.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Artificial Intelligence Intern</h3>
-            <p class="company">Studio AI / CodSoft</p>
-            <p>
-              Practised artificial intelligence concepts through
-              project-based learning activities.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Python Development Intern</h3>
-            <p class="company">Technonet</p>
-            <p>
-              Developed familiarity with Python programming
-              and development workflows.
-            </p>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section class="section" id="skills">
-      <div class="container">
-        <h2 class="section-title">Skills &amp; <span>Technologies</span></h2>
-
-        <div class="skills-grid">
-          <div class="skill">Python</div>
-          <div class="skill">C Programming</div>
-          <div class="skill">SQL</div>
-          <div class="skill">HTML5</div>
-          <div class="skill">CSS3</div>
-          <div class="skill">JavaScript</div>
-          <div class="skill">Git &amp; GitHub</div>
-          <div class="skill">Data Analytics</div>
-          <div class="skill">Machine Learning</div>
-          <div class="skill">Artificial Intelligence</div>
-          <div class="skill">Jupyter Notebook</div>
-          <div class="skill">VS Code</div>
-          <div class="skill">Digital Marketing</div>
-          <div class="skill">Social Media Marketing</div>
-          <div class="skill">Lead Generation</div>
-          <div class="skill">Advanced Excel</div>
-          <div class="skill">Deep Learning</div>
-          <div class="skill">Web Development</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section class="section section-alt" id="projects">
-      <div class="container">
-        <h2 class="section-title">My <span>Projects</span></h2>
-
-        <div class="card-grid">
-
-          <article class="card">
-            <div class="project-number">PROJECT 01</div>
-            <h3>Tic-Tac-Toe Game</h3>
-            <p>
-              A Python game featuring player turns, win and draw detection,
-              input validation and game logic.
-            </p>
-          </article>
-
-          <article class="card">
-            <div class="project-number">PROJECT 02</div>
-            <h3>Face Detection System</h3>
-            <p>
-              A computer vision project using OpenCV to detect faces
-              from images or camera input.
-            </p>
-          </article>
-
-          <article class="card">
-            <div class="project-number">PROJECT 03</div>
-            <h3>Recommendation System</h3>
-            <p>
-              A project exploring recommendations based on user
-              preferences or similarities between items.
-            </p>
-          </article>
-
-          <article class="card">
-            <div class="project-number">PROJECT 04</div>
-            <h3>Personal Portfolio Website</h3>
-            <p>
-              A responsive website showcasing my profile, skills,
-              experience, projects and contact information.
-            </p>
-          </article>
-
-          <article class="card">
-            <div class="project-number">PROJECT 05</div>
-            <h3>QR Code Generator</h3>
-            <p>
-              A Python project for generating QR codes from
-              user-provided text or website links.
-            </p>
-          </article>
-
-          <article class="card">
-            <div class="project-number">PROJECT 06</div>
-            <h3>Rolling Dice</h3>
-            <p>
-              A programming project that simulates rolling a dice
-              and displays a random result.
-            </p>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- CERTIFICATES: NAMES ONLY -->
-    <section class="section" id="certificates">
-      <div class="container">
-        <h2 class="section-title">My <span>Certificates</span></h2>
-
-        <div class="certificate-grid">
-          <div class="certificate">Python Development</div>
-          <div class="certificate">Artificial Intelligence</div>
-          <div class="certificate">Generative AI</div>
-          <div class="certificate">Python Programming</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section class="section section-alt" id="contact">
-      <div class="container">
-        <h2 class="section-title">Contact <span>Me</span></h2>
-
-        <div class="contact-card">
-          <p>
-            Feel free to contact me for professional opportunities,
-            collaboration and networking.
-          </p>
-
-          <!-- Replace this placeholder with your actual email -->
-          <a class="btn" href="mailto:your-email@example.com">
-            Email Me
-          </a>
-
-          <p class="contact-note">
-            Please update this email and your social profile links
-            before publishing your portfolio.
-          </p>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <p>
-        &copy; <span id="year"></span> Devender Kumar.
-        All rights reserved.
-      </p>
-    </div>
-  </footer>
-
-  <button type="button" class="back-to-top" id="backToTop"
-          aria-label="Back to top">
-    ↑
-  </button>
-
-  <!-- JAVASCRIPT -->
-  <script>
-    // Automatically update the footer year
-    const yearElement = document.getElementById("year");
-
-    if (yearElement) {
-      yearElement.textContent = new Date().getFullYear();
-    }
-
-    // Mobile navigation menu
-    const menuToggle = document.getElementById("menuToggle");
-    const navLinks = document.getElementById("navLinks");
-
-    if (menuToggle && navLinks) {
-      menuToggle.addEventListener("click", function () {
-        const isOpen = navLinks.classList.toggle("open");
-
-        menuToggle.setAttribute("aria-expanded", String(isOpen));
-        menuToggle.textContent = isOpen ? "✕" : "☰";
-      });
-
-      navLinks.querySelectorAll("a").forEach(function (link) {
-        link.addEventListener("click", function () {
-          navLinks.classList.remove("open");
-          menuToggle.setAttribute("aria-expanded", "false");
-          menuToggle.textContent = "☰";
+        menuBtn.addEventListener("click", function () {
+            const isOpen = navLinks.classList.toggle("active");
+            menuBtn.setAttribute("aria-expanded", isOpen);
+            menuBtn.textContent = isOpen ? "✕" : "☰";
         });
-      });
-    }
 
-    // Back-to-top button
-    const backToTop = document.getElementById("backToTop");
-
-    if (backToTop) {
-      window.addEventListener("scroll", function () {
-        if (window.scrollY > 300) {
-          backToTop.classList.add("visible");
-        } else {
-          backToTop.classList.remove("visible");
-        }
-      });
-
-      backToTop.addEventListener("click", function () {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth"
+        // Close mobile menu after clicking a link
+        document.querySelectorAll(".nav-links a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                navLinks.classList.remove("active");
+                menuBtn.setAttribute("aria-expanded", "false");
+                menuBtn.textContent = "☰";
+            });
         });
-      });
-    }
-  </script>
+
+        // Automatically update copyright year
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+
+        // Back-to-top button
+        const backToTop = document.getElementById("backToTop");
+
+        window.addEventListener("scroll", function () {
+            backToTop.style.display =
+                window.scrollY > 300 ? "block" : "none";
+        });
+
+        backToTop.addEventListener("click", function () {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    </script>
 
 </body>
 </html>
