@@ -1,20 +1,13 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Devender Kumar's portfolio - Computer Science, Python, Artificial Intelligence and Machine Learning projects.">
+    <meta name="description" content="Devender Kumar's portfolio featuring Computer Science, Digital Marketing, Real Estate, Python and AI skills.">
     <title>Devender Kumar | Portfolio</title>
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
         :root {
             --bg: #0b1120;
             --card: #121c30;
@@ -23,6 +16,13 @@
             --text: #f1f5f9;
             --muted: #a8b3c7;
             --border: #26354d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         body {
@@ -42,12 +42,11 @@
             margin: auto;
         }
 
-        /* NAVIGATION */
         header {
             position: sticky;
             top: 0;
             z-index: 1000;
-            background: rgba(11, 17, 32, 0.95);
+            background: rgba(11, 17, 32, 0.96);
             border-bottom: 1px solid var(--border);
             backdrop-filter: blur(12px);
         }
@@ -61,7 +60,7 @@
         }
 
         .logo {
-            font-size: 23px;
+            font-size: 24px;
             font-weight: bold;
             color: var(--primary);
         }
@@ -69,13 +68,13 @@
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 24px;
+            gap: 18px;
             list-style: none;
         }
 
         .nav-links a {
             color: var(--muted);
-            font-size: 14px;
+            font-size: 13px;
             transition: 0.3s;
         }
 
@@ -85,8 +84,8 @@
 
         .menu-btn {
             display: none;
-            border: none;
             background: none;
+            border: none;
             color: white;
             font-size: 28px;
             cursor: pointer;
@@ -94,7 +93,7 @@
 
         /* HERO */
         .hero {
-            min-height: 88vh;
+            min-height: 86vh;
             display: flex;
             align-items: center;
             padding: 70px 0;
@@ -104,7 +103,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 60px;
+            gap: 55px;
             width: 100%;
         }
 
@@ -124,40 +123,43 @@
         }
 
         .hero h1 {
-            font-size: clamp(38px, 6vw, 65px);
-            line-height: 1.15;
+            font-size: clamp(38px, 5vw, 62px);
+            line-height: 1.2;
             margin-bottom: 14px;
         }
 
-        .hero h1 span {
+        .hero h1 span,
+        .section-title h2 span {
             color: var(--primary);
         }
 
         .hero h2 {
-            font-size: clamp(19px, 3vw, 27px);
+            font-size: clamp(19px, 3vw, 26px);
             color: var(--secondary);
             margin-bottom: 18px;
         }
 
         .hero p {
+            max-width: 650px;
             color: var(--muted);
-            max-width: 600px;
-            margin-bottom: 28px;
+            margin-bottom: 26px;
         }
 
-        .hero-buttons {
+        .hero-buttons,
+        .contact-buttons {
             display: flex;
             flex-wrap: wrap;
-            gap: 14px;
+            gap: 12px;
         }
 
         .btn {
             display: inline-block;
-            padding: 11px 22px;
+            padding: 11px 20px;
             border-radius: 8px;
             font-weight: bold;
             border: 1px solid var(--primary);
             transition: 0.3s;
+            cursor: pointer;
         }
 
         .btn-primary {
@@ -171,46 +173,41 @@
 
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.15);
         }
 
         .profile-wrap {
             flex-shrink: 0;
-            width: 290px;
-            height: 290px;
+            width: 285px;
+            height: 285px;
             padding: 7px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            box-shadow: 0 0 45px rgba(56, 189, 248, 0.15);
+            box-shadow: 0 0 40px rgba(56, 189, 248, 0.16);
         }
 
         .profile-wrap img {
+            display: block;
             width: 100%;
             height: 100%;
-            border-radius: 50%;
             object-fit: cover;
+            border-radius: 50%;
             border: 5px solid var(--bg);
-            display: block;
         }
 
-        /* COMMON SECTIONS */
+        /* SECTIONS */
         section {
-            padding: 85px 0;
+            padding: 80px 0;
             scroll-margin-top: 70px;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 45px;
+            margin-bottom: 40px;
         }
 
         .section-title h2 {
             font-size: clamp(28px, 4vw, 38px);
-            margin-bottom: 10px;
-        }
-
-        .section-title h2 span {
-            color: var(--primary);
+            margin-bottom: 8px;
         }
 
         .section-title p {
@@ -222,7 +219,7 @@
             margin: auto;
             text-align: center;
             color: var(--muted);
-            font-size: 17px;
+            font-size: 16px;
         }
 
         .about-content p + p {
@@ -237,12 +234,12 @@
         }
 
         .card {
+            min-width: 0;
             background: var(--card);
             border: 1px solid var(--border);
             border-radius: 14px;
-            padding: 25px;
+            padding: 24px;
             transition: 0.3s;
-            min-width: 0;
         }
 
         .card:hover {
@@ -251,9 +248,8 @@
         }
 
         .card h3 {
-            font-size: 20px;
-            margin-bottom: 12px;
-            color: var(--text);
+            font-size: 19px;
+            margin-bottom: 10px;
         }
 
         .card p {
@@ -261,18 +257,29 @@
             font-size: 14px;
         }
 
-        .card .date {
+        .card p + p {
+            margin-top: 10px;
+        }
+
+        .date {
             display: inline-block;
-            font-size: 12px;
-            color: var(--primary);
+            color: var(--primary) !important;
+            font-size: 13px !important;
             margin-bottom: 10px;
+        }
+
+        .card ul {
+            padding-left: 19px;
+            margin-top: 10px;
+            color: var(--muted);
+            font-size: 14px;
         }
 
         .card-link {
             display: inline-block;
             color: var(--primary);
+            margin-top: 14px;
             font-size: 14px;
-            margin-top: 16px;
         }
 
         /* SKILLS */
@@ -280,11 +287,11 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 14px;
+            gap: 13px;
         }
 
         .skill {
-            padding: 12px 20px;
+            padding: 11px 17px;
             background: var(--card);
             border: 1px solid var(--border);
             border-radius: 9px;
@@ -297,11 +304,18 @@
             color: var(--primary);
         }
 
+        .skill-category {
+            color: var(--secondary);
+            font-size: 20px;
+            margin: 30px 0 16px;
+            text-align: center;
+        }
+
         /* CONTACT */
         .contact-card {
-            max-width: 700px;
+            max-width: 720px;
             margin: auto;
-            padding: 35px;
+            padding: 32px;
             background: var(--card);
             border: 1px solid var(--border);
             border-radius: 16px;
@@ -310,18 +324,13 @@
 
         .contact-card > p {
             color: var(--muted);
-            margin-bottom: 25px;
+            margin-bottom: 22px;
         }
 
         .contact-item {
-            padding: 14px;
+            padding: 13px;
             border-bottom: 1px solid var(--border);
             overflow-wrap: anywhere;
-        }
-
-        .contact-item:last-of-type {
-            border-bottom: none;
-            margin-bottom: 22px;
         }
 
         .contact-item strong {
@@ -334,11 +343,8 @@
         }
 
         .contact-buttons {
-            display: flex;
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 20px;
+            margin-top: 24px;
         }
 
         footer {
@@ -365,21 +371,18 @@
             z-index: 999;
         }
 
-        /* RESPONSIVE DESIGN */
-        @media (max-width: 850px) {
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
             .hero-content {
-                flex-direction: column-reverse;
-                text-align: center;
-                gap: 35px;
-            }
-
-            .hero-text p {
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .hero-buttons {
-                justify-content: center;
+                gap: 30px;
             }
 
             .profile-wrap {
@@ -390,7 +393,9 @@
             .cards {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
+        }
 
+        @media (max-width: 720px) {
             .menu-btn {
                 display: block;
             }
@@ -406,35 +411,57 @@
                 border-bottom: 1px solid var(--border);
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 18px;
+                gap: 16px;
             }
 
             .nav-links.active {
                 display: flex;
             }
+
+            .nav-links a {
+                font-size: 15px;
+            }
+
+            .hero-content {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .profile-wrap {
+                width: 210px;
+                height: 210px;
+            }
         }
 
-        @media (max-width: 560px) {
+        @media (max-width: 540px) {
+            section {
+                padding: 60px 0;
+            }
+
             .cards {
                 grid-template-columns: 1fr;
             }
 
-            section {
-                padding: 65px 0;
-            }
-
             .contact-card {
-                padding: 22px 16px;
+                padding: 22px 15px;
             }
 
             .profile-wrap {
-                width: 195px;
-                height: 195px;
+                width: 185px;
+                height: 185px;
             }
 
             .hero {
                 min-height: auto;
-                padding: 65px 0;
             }
         }
     </style>
@@ -457,6 +484,7 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#experience">Experience</a></li>
+                <li><a href="#marketing">Digital Marketing</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#certificates">Certificates</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -466,7 +494,7 @@
 
     <main>
 
-        <!-- HERO SECTION -->
+        <!-- HERO -->
         <section class="hero" id="home">
             <div class="container hero-content">
 
@@ -475,18 +503,18 @@
 
                     <h1>Hi, I'm <span>Devender Kumar</span></h1>
 
-                    <h2>Computer Science Graduate</h2>
+                    <h2>Digital Marketing & Computer Science</h2>
 
                     <p>
-                        I am interested in Python programming, Artificial Intelligence,
-                        Machine Learning, and software development. I enjoy learning
+                          I am interested in Python programming, Artificial Intelligence,
+                        Machine Learning, and software development and Digital Marketting. I enjoy learning
                         new technologies and building practical projects to improve
                         my technical skills.
                     </p>
 
                     <div class="hero-buttons">
-                        <a href="#projects" class="btn btn-primary">
-                            View My Projects
+                        <a href="#experience" class="btn btn-primary">
+                            My Experience
                         </a>
 
                         <a href="resume.pdf" class="btn btn-outline"
@@ -508,46 +536,63 @@
             </div>
         </section>
 
-        <!-- ABOUT SECTION -->
+        <!-- ABOUT -->
         <section id="about">
             <div class="container">
                 <div class="section-title">
                     <h2>About <span>Me</span></h2>
-                    <p>Get to know me</p>
+                    <p>My background and professional interests</p>
                 </div>
 
                 <div class="about-content">
                     <p>
                         I am Devender Kumar, a Computer Science and Engineering
-                        graduate from Apex University, Jaipur. My technical interests
-                        include Python, SQL, Artificial Intelligence, Machine Learning,
-                        and web technologies.
+                        graduate from Apex University, Jaipur. My interests
+                        include Digital Marketing, Real Estate Marketing,
+                        customer communication, Python programming, and
+                        technology-driven business solutions.
                     </p>
 
                     <p>
-                        I have worked on learning projects involving programming,
-                        computer vision, recommendation systems, and web development.
-                        I aim to strengthen my fundamentals, solve practical problems,
-                        and continue growing as a technology professional.
+                        I have six months of experience at Balaji Trading,
+                        a real estate company, in Digital Marketing and
+                        Telecalling. This experience involved supporting
+                        customer communication, property enquiries, lead
+                        follow-ups, and marketing-related activities.
                     </p>
 
                     <p>
-                        I value continuous learning, teamwork, adaptability, and
-                        responsible work. I am open to suitable opportunities where
-                        I can contribute my skills and gain practical experience.
+                        I am interested in opportunities where I can use my
+                        communication, marketing, and technical skills while
+                        continuing to learn and grow professionally.
                     </p>
                 </div>
             </div>
         </section>
 
-        <!-- SKILLS SECTION -->
+        <!-- SKILLS & TECHNOLOGIES -->
         <section id="skills">
             <div class="container">
                 <div class="section-title">
-                    <h2>My <span>Skills</span></h2>
-                    <p>Technologies and tools I have worked with</p>
+                    <h2>Skills & <span>Technologies</span></h2>
+                    <p>My technical, marketing, and communication skills</p>
                 </div>
 
+                <h3 class="skill-category">Digital Marketing Skills</h3>
+                <div class="skills-grid">
+                    <span class="skill">Digital Marketing</span>
+                    <span class="skill">Real Estate Marketing</span>
+                    <span class="skill">Lead Generation</span>
+                    <span class="skill">Social Media Marketing</span>
+                    <span class="skill">Search Engine Optimization (SEO)</span>
+                    <span class="skill">Content Marketing</span>
+                    <span class="skill">Customer Relationship Management</span>
+                    <span class="skill">Telecalling</span>
+                    <span class="skill">Customer Communication</span>
+                    <span class="skill">Lead Follow-up</span>
+                </div>
+
+                <h3 class="skill-category">Programming & Web Technologies</h3>
                 <div class="skills-grid">
                     <span class="skill">Python</span>
                     <span class="skill">C Programming</span>
@@ -556,31 +601,62 @@
                     <span class="skill">CSS</span>
                     <span class="skill">JavaScript</span>
                     <span class="skill">Flask</span>
+                </div>
+
+                <h3 class="skill-category">AI & Development Tools</h3>
+                <div class="skills-grid">
                     <span class="skill">Machine Learning</span>
                     <span class="skill">Deep Learning</span>
                     <span class="skill">OpenCV</span>
                     <span class="skill">Jupyter Notebook</span>
-                    <span class="skill">VS Code</span>
+                    <span class="skill">Visual Studio Code</span>
                     <span class="skill">GitHub</span>
                 </div>
             </div>
         </section>
 
-        <!-- EXPERIENCE SECTION -->
+        <!-- EXPERIENCE -->
         <section id="experience">
             <div class="container">
                 <div class="section-title">
-                    <h2>Internship <span>Experience</span></h2>
-                    <p>Training and learning experiences</p>
+                    <h2>Work <span>Experience</span></h2>
+                    <p>Professional experience and internships</p>
                 </div>
 
                 <div class="cards">
+
+                    <article class="card">
+                        <h3>Digital Marketing & Telecaller</h3>
+                        <p class="date">
+                            Balaji Trading | Real Estate Company
+                        </p>
+
+                        <p><strong>Duration:</strong> 6 Months</p>
+
+                        <p>
+                            Worked on digital marketing and telecalling
+                            activities in the real estate sector, supporting
+                            property enquiries, potential customers, and
+                            lead follow-ups.
+                        </p>
+
+                        <p><strong>Key Responsibilities</strong></p>
+
+                        <ul>
+                            <li>Handled customer calls and property enquiries.</li>
+                            <li>Followed up with prospective customers.</li>
+                            <li>Supported real estate marketing activities.</li>
+                            <li>Communicated property information to leads.</li>
+                            <li>Assisted with lead generation and engagement.</li>
+                        </ul>
+                    </article>
+
                     <article class="card">
                         <h3>Python Development</h3>
                         <p class="date">OctaNet</p>
                         <p>
-                            Python development learning experience focused on
-                            programming fundamentals and practical tasks.
+                            Python development learning experience focused
+                            on programming fundamentals and practical tasks.
                         </p>
                     </article>
 
@@ -588,8 +664,8 @@
                         <h3>Generative AI</h3>
                         <p class="date">Prodigy Infotech</p>
                         <p>
-                            Learning experience related to Generative Artificial
-                            Intelligence and practical technology tasks.
+                            Learning activities related to Generative AI
+                            and practical technology concepts.
                         </p>
                     </article>
 
@@ -597,8 +673,8 @@
                         <h3>Artificial Intelligence</h3>
                         <p class="date">Studio</p>
                         <p>
-                            Exposure to Artificial Intelligence concepts and
-                            project-oriented learning activities.
+                            Exposure to Artificial Intelligence concepts
+                            and project-based learning.
                         </p>
                     </article>
 
@@ -606,8 +682,8 @@
                         <h3>Artificial Intelligence</h3>
                         <p class="date">CodSoft</p>
                         <p>
-                            Practice with AI-related concepts and programming
-                            tasks to strengthen technical knowledge.
+                            Practice with AI-related concepts and
+                            programming tasks.
                         </p>
                     </article>
 
@@ -615,185 +691,218 @@
                         <h3>Python Development</h3>
                         <p class="date">Technonet</p>
                         <p>
-                            Python programming practice and development-oriented
+                            Python programming practice and development
                             learning activities.
+                        </p>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- DIGITAL MARKETING -->
+        <section id="marketing">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Digital <span>Marketing</span></h2>
+                    <p>Marketing interests and real estate experience</p>
+                </div>
+
+                <div class="about-content" style="margin-bottom: 35px;">
+                    <p>
+                        My professional interests include digital promotion,
+                        real estate lead generation, social media, online
+                        visibility, and customer engagement. I am interested
+                        in using digital channels to help businesses connect
+                        with potential customers.
+                    </p>
+                </div>
+
+                <div class="cards">
+                    <article class="card">
+                        <h3>Real Estate Marketing</h3>
+                        <p>
+                            Supporting property promotion and communicating
+                            property information to potential customers.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Lead Generation</h3>
+                        <p>
+                            Understanding customer enquiries, maintaining
+                            follow-ups, and supporting lead engagement.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Social Media Marketing</h3>
+                        <p>
+                            Understanding social media content, brand
+                            awareness, audience engagement, and promotion.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Search Engine Optimization</h3>
+                        <p>
+                            Learning keyword research, website optimization,
+                            and ways to improve organic search visibility.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Customer Communication</h3>
+                        <p>
+                            Telecalling, responding to enquiries, sharing
+                            relevant information, and following up with leads.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Marketing Analytics</h3>
+                        <p>
+                            Learning about campaign performance, customer
+                            engagement, traffic, and lead conversion metrics.
                         </p>
                     </article>
                 </div>
             </div>
         </section>
 
-        <!-- PROJECTS SECTION -->
+        <!-- PROJECTS -->
         <section id="projects">
             <div class="container">
                 <div class="section-title">
                     <h2>My <span>Projects</span></h2>
-                    <p>Some projects from my learning journey</p>
+                    <p>Programming and technology projects</p>
                 </div>
 
                 <div class="cards">
                     <article class="card">
                         <h3>Smart Attendance System</h3>
                         <p>
-                            A face-recognition attendance project designed to
-                            identify registered faces and support attendance
-                            record management using Python and OpenCV.
+                            A face-recognition attendance project using
+                            Python and OpenCV to explore face identification
+                            and attendance record management.
                         </p>
-                        <a href="https://github.com/" target="_blank"
-                           rel="noopener" class="card-link">
-                            Add Project Repository →
-                        </a>
                     </article>
 
                     <article class="card">
                         <h3>Face Detection</h3>
                         <p>
-                            A computer vision project exploring face detection
-                            using OpenCV and image-processing techniques.
+                            A computer vision project exploring face
+                            detection and image processing with OpenCV.
                         </p>
-                        <a href="https://github.com/" target="_blank"
-                           rel="noopener" class="card-link">
-                            Add Project Repository →
-                        </a>
                     </article>
 
                     <article class="card">
                         <h3>Recommendation System</h3>
                         <p>
-                            A project exploring how data and recommendation
-                            techniques can help suggest relevant items to users.
+                            A learning project exploring how data can
+                            help suggest relevant items to users.
                         </p>
-                        <a href="https://github.com/" target="_blank"
-                           rel="noopener" class="card-link">
-                            Add Project Repository →
-                        </a>
                     </article>
 
                     <article class="card">
                         <h3>Tic-Tac-Toe Game</h3>
                         <p>
-                            A Python game project involving game rules,
-                            player turns, win and draw conditions, and input
-                            validation.
+                            A Python game project featuring player turns,
+                            game rules, win conditions, and draw detection.
                         </p>
-                        <a href="https://github.com/" target="_blank"
-                           rel="noopener" class="card-link">
-                            Add Project Repository →
-                        </a>
                     </article>
 
                     <article class="card">
                         <h3>QR Code Generator</h3>
                         <p>
-                            A Python project that generates QR codes from
-                            user-provided text or links.
+                            A Python project that generates QR codes
+                            from user-provided text or links.
                         </p>
-                        <a href="https://github.com/" target="_blank"
-                           rel="noopener" class="card-link">
-                            Add Project Repository →
-                        </a>
                     </article>
 
                     <article class="card">
                         <h3>Personal Portfolio</h3>
                         <p>
-                            A responsive personal website built with HTML,
-                            CSS, and JavaScript to present skills, projects,
-                            and contact information.
+                            A responsive website showcasing my skills,
+                            work experience, projects, and contact details.
                         </p>
-                        <a href="#home" class="card-link">
-                            Explore This Website →
-                        </a>
                     </article>
                 </div>
             </div>
         </section>
 
-        <!-- CERTIFICATES SECTION -->
+        <!-- CERTIFICATES -->
         <section id="certificates">
             <div class="container">
                 <div class="section-title">
-                    <h2>My <span>Certificates</span></h2>
-                    <p>Training and professional learning</p>
+                    <h2>Certificates & <span>Training</span></h2>
+                    <p>Professional learning and development</p>
                 </div>
 
-                <div class="about-content">
-                    <p>
-                        I have undertaken learning and internship activities
-                        related to Python Development, Artificial Intelligence,
-                        and Generative AI.
-                    </p>
-
-                    <p>
-                        Add your actual certificate files or certificate links
-                        below so visitors can verify and view them.
-                    </p>
-                </div>
-
-                <div class="cards" style="margin-top: 30px;">
+                <div class="cards">
                     <article class="card">
                         <h3>Python Development</h3>
-                        <p>OctaNet / Technonet</p>
-                        <a href="#contact" class="card-link">
-                            Ask for Certificate Details →
-                        </a>
+                        <p>
+                            Add your verified Python internship certificate
+                            or training details here.
+                        </p>
                     </article>
 
                     <article class="card">
                         <h3>Artificial Intelligence</h3>
-                        <p>CodSoft / Studio</p>
-                        <a href="#contact" class="card-link">
-                            Ask for Certificate Details →
-                        </a>
+                        <p>
+                            Add your actual Artificial Intelligence
+                            certificate or training details here.
+                        </p>
                     </article>
 
                     <article class="card">
                         <h3>Generative AI</h3>
-                        <p>Prodigy Infotech</p>
-                        <a href="#contact" class="card-link">
-                            Ask for Certificate Details →
-                        </a>
+                        <p>
+                            Add your actual Generative AI certificate
+                            or verification link here.
+                        </p>
                     </article>
                 </div>
             </div>
         </section>
 
-        <!-- RESUME SECTION -->
+        <!-- RESUME -->
         <section id="resume">
             <div class="container">
                 <div class="section-title">
                     <h2>My <span>Resume</span></h2>
-                    <p>View my resume for more information</p>
+                    <p>Learn more about my background and experience</p>
                 </div>
 
                 <div class="about-content">
                     <p>
-                        You can open my resume to review my education,
-                        technical skills, projects, and experience.
+                        View my resume for additional details about my
+                        education, skills, professional experience, and projects.
                     </p>
 
                     <div style="margin-top: 25px;">
                         <a href="resume.pdf" target="_blank"
                            rel="noopener" class="btn btn-primary">
-                            Open Resume PDF
+                            View Resume PDF
                         </a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- CONTACT SECTION -->
+        <!-- CONTACT -->
         <section id="contact">
             <div class="container">
                 <div class="section-title">
                     <h2>Contact <span>Me</span></h2>
-                    <p>Let's connect for opportunities and collaboration</p>
+                    <p>Let's connect for professional opportunities</p>
                 </div>
 
                 <div class="contact-card">
                     <p>
-                        Have an opportunity or want to discuss a project?
-                        Feel free to contact me.
+                        Feel free to contact me about job opportunities,
+                        collaborations, or professional enquiries.
                     </p>
 
                     <div class="contact-item">
@@ -809,7 +918,8 @@
                     </div>
 
                     <div class="contact-buttons">
-                        <a href="tel:+919653571425" class="btn btn-primary">
+                        <a href="tel:+919653571425"
+                           class="btn btn-primary">
                             Call Me
                         </a>
 
@@ -843,7 +953,7 @@
     <button id="backToTop" aria-label="Back to top">↑</button>
 
     <script>
-        // Mobile navigation menu
+        // Mobile menu
         const menuBtn = document.getElementById("menuBtn");
         const navLinks = document.getElementById("navLinks");
 
@@ -853,7 +963,7 @@
             menuBtn.textContent = isOpen ? "✕" : "☰";
         });
 
-        // Close mobile menu after clicking a link
+        // Close menu after selecting a section
         document.querySelectorAll(".nav-links a").forEach(function (link) {
             link.addEventListener("click", function () {
                 navLinks.classList.remove("active");
@@ -862,11 +972,11 @@
             });
         });
 
-        // Automatically update copyright year
+        // Automatic copyright year
         document.getElementById("year").textContent =
             new Date().getFullYear();
 
-        // Back-to-top button
+        // Back to top button
         const backToTop = document.getElementById("backToTop");
 
         window.addEventListener("scroll", function () {
