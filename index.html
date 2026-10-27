@@ -2,1258 +2,533 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Devender Kumar's portfolio featuring Computer Science, Digital Marketing, Real Estate, Python and AI skills.">
-    <title>Devender Kumar | Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-
-    <style>
-        :root {
-            --bg: #0b1120;
-            --card: #121c30;
-            --primary: #38bdf8;
-            --secondary: #818cf8;
-            --text: #f1f5f9;
-            --muted: #a8b3c7;
-            --border: #26354d;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .container {
-            width: min(1100px, 90%);
-            margin: auto;
-        }
-
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: rgba(11, 17, 32, 0.96);
-            border-bottom: 1px solid var(--border);
-            backdrop-filter: blur(12px);
-            animation: headerSlideDown 0.7s ease both;
-        }
-
-        nav {
-            min-height: 72px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--primary);
-            transition: transform 0.3s ease, text-shadow 0.3s ease;
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-            text-shadow: 0 0 18px rgba(56, 189, 248, 0.55);
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            position: relative;
-            color: var(--muted);
-            font-size: 13px;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -6px;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 28px;
-            cursor: pointer;
-            transition: transform 0.25s ease;
-        }
-
-        .menu-btn:hover {
-            transform: scale(1.1);
-        }
-
-        /* HERO */
-        .hero {
-            min-height: 86vh;
-            display: flex;
-            align-items: center;
-            padding: 70px 0;
-        }
-
-        .hero-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 55px;
-            width: 100%;
-        }
-
-        .hero-text {
-            flex: 1;
-            animation: heroTextIn 0.9s ease both;
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 6px 14px;
-            border: 1px solid var(--border);
-            border-radius: 30px;
-            color: var(--primary);
-            background: var(--card);
-            font-size: 13px;
-            margin-bottom: 20px;
-            animation: tagAppear 0.8s ease 0.15s both;
-        }
-
-        .hero h1 {
-            font-size: clamp(38px, 5vw, 62px);
-            line-height: 1.2;
-            margin-bottom: 14px;
-            animation: heroTextIn 0.9s ease 0.1s both;
-        }
-
-        .hero h1 span,
-        .section-title h2 span {
-            color: var(--primary);
-        }
-
-        .hero h1 span {
-            display: inline-block;
-            animation: nameGlow 3s ease-in-out infinite alternate;
-        }
-
-        .hero h2 {
-            font-size: clamp(19px, 3vw, 26px);
-            color: var(--secondary);
-            margin-bottom: 18px;
-            animation: heroTextIn 0.9s ease 0.2s both;
-        }
-
-        .hero p {
-            max-width: 650px;
-            color: var(--muted);
-            margin-bottom: 26px;
-            animation: heroTextIn 0.9s ease 0.3s both;
-        }
-
-        .hero-buttons,
-        .contact-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .hero-buttons {
-            animation: heroTextIn 0.9s ease 0.4s both;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 11px 20px;
-            border-radius: 8px;
-            font-weight: bold;
-            border: 1px solid var(--primary);
-            transition:
-                transform 0.3s ease,
-                box-shadow 0.3s ease,
-                background 0.3s ease,
-                color 0.3s ease;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: #07111f;
-        }
-
-        .btn-outline {
-            color: var(--primary);
-        }
-
-        .btn:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(56, 189, 248, 0.2);
-        }
-
-        .btn-primary:hover {
-            background: #7dd3fc;
-        }
-
-        .btn-outline:hover {
-            background: var(--primary);
-            color: #07111f;
-        }
-
-        .profile-wrap {
-            position: relative;
-            isolation: isolate;
-            flex-shrink: 0;
-            width: 285px;
-            height: 285px;
-            padding: 7px;
-            border-radius: 50%;
-            background: linear-gradient(
-                135deg,
-                var(--primary),
-                var(--secondary),
-                #c084fc,
-                var(--primary)
-            );
-            background-size: 300% 300%;
-            box-shadow: 0 0 40px rgba(56, 189, 248, 0.16);
-            animation:
-                profileFloat 4s ease-in-out infinite,
-                gradientFlow 6s ease infinite,
-                profileAppear 1s ease 0.2s both;
-        }
-
-        .profile-wrap::before {
-            content: "";
-            position: absolute;
-            inset: -8px;
-            border-radius: 50%;
-            background: linear-gradient(
-                135deg,
-                var(--primary),
-                transparent,
-                var(--secondary)
-            );
-            opacity: 0.3;
-            filter: blur(18px);
-            z-index: -1;
-            animation: glowPulse 3s ease-in-out infinite alternate;
-        }
-
-        .profile-wrap img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 5px solid var(--bg);
-            transition: transform 0.5s ease;
-        }
-
-        .profile-wrap:hover img {
-            transform: scale(1.035);
-        }
-
-        /* SECTIONS */
-        section {
-            padding: 80px 0;
-            scroll-margin-top: 70px;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .section-title h2 {
-            font-size: clamp(28px, 4vw, 38px);
-            margin-bottom: 8px;
-        }
-
-        .section-title p {
-            color: var(--muted);
-        }
-
-        .about-content {
-            max-width: 850px;
-            margin: auto;
-            text-align: center;
-            color: var(--muted);
-            font-size: 16px;
-        }
-
-        .about-content p + p {
-            margin-top: 15px;
-        }
-
-        /* CARDS */
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 22px;
-        }
-
-        .card {
-            position: relative;
-            min-width: 0;
-            overflow: hidden;
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 24px;
-            transition:
-                transform 0.35s ease,
-                border-color 0.35s ease,
-                box-shadow 0.35s ease;
-        }
-
-        .card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -110%;
-            width: 70%;
-            height: 2px;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                var(--primary),
-                transparent
-            );
-            transition: left 0.55s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-7px);
-            border-color: var(--primary);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .card:hover::before {
-            left: 140%;
-        }
-
-        .card h3 {
-            font-size: 19px;
-            margin-bottom: 10px;
-            transition: color 0.3s ease;
-        }
-
-        .card:hover h3 {
-            color: var(--primary);
-        }
-
-        .card p {
-            color: var(--muted);
-            font-size: 14px;
-        }
-
-        .card p + p {
-            margin-top: 10px;
-        }
-
-        .date {
-            display: inline-block;
-            color: var(--primary) !important;
-            font-size: 13px !important;
-            margin-bottom: 10px;
-        }
-
-        .card ul {
-            padding-left: 19px;
-            margin-top: 10px;
-            color: var(--muted);
-            font-size: 14px;
-        }
-
-        .card-link {
-            display: inline-block;
-            color: var(--primary);
-            margin-top: 14px;
-            font-size: 14px;
-        }
-
-        /* SKILLS */
-        .skills-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 13px;
-        }
-
-        .skill {
-            padding: 11px 17px;
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 9px;
-            color: var(--text);
-            transition:
-                transform 0.3s ease,
-                border-color 0.3s ease,
-                color 0.3s ease,
-                box-shadow 0.3s ease;
-        }
-
-        .skill:hover {
-            transform: translateY(-4px) scale(1.025);
-            border-color: var(--primary);
-            color: var(--primary);
-            box-shadow: 0 6px 18px rgba(56, 189, 248, 0.1);
-        }
-
-        .skill-category {
-            color: var(--secondary);
-            font-size: 20px;
-            margin: 30px 0 16px;
-            text-align: center;
-            transition: color 0.3s ease;
-        }
-
-        .skill-category:hover {
-            color: var(--primary);
-        }
-
-        /* CONTACT */
-        .contact-card {
-            max-width: 720px;
-            margin: auto;
-            padding: 32px;
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            text-align: center;
-            transition:
-                border-color 0.3s ease,
-                box-shadow 0.3s ease;
-        }
-
-        .contact-card:hover {
-            border-color: rgba(56, 189, 248, 0.65);
-            box-shadow: 0 12px 35px rgba(56, 189, 248, 0.08);
-        }
-
-        .contact-card > p {
-            color: var(--muted);
-            margin-bottom: 22px;
-        }
-
-        .contact-item {
-            padding: 13px;
-            border-bottom: 1px solid var(--border);
-            overflow-wrap: anywhere;
-        }
-
-        .contact-item strong {
-            color: var(--primary);
-            margin-right: 8px;
-        }
-
-        .contact-item a {
-            transition: color 0.3s ease;
-        }
-
-        .contact-item a:hover {
-            color: var(--primary);
-        }
-
-        .contact-buttons {
-            justify-content: center;
-            margin-top: 24px;
-        }
-
-        footer {
-            padding: 25px 0;
-            text-align: center;
-            color: var(--muted);
-            border-top: 1px solid var(--border);
-            font-size: 14px;
-            transition: color 0.3s ease;
-        }
-
-        footer:hover {
-            color: var(--text);
-        }
-
-        #backToTop {
-            position: fixed;
-            right: 20px;
-            bottom: 20px;
-            width: 44px;
-            height: 44px;
-            border: none;
-            border-radius: 50%;
-            background: var(--primary);
-            color: #07111f;
-            font-size: 22px;
-            cursor: pointer;
-            display: none;
-            z-index: 999;
-            box-shadow: 0 4px 18px rgba(56, 189, 248, 0.25);
-            transition:
-                transform 0.3s ease,
-                box-shadow 0.3s ease;
-        }
-
-        #backToTop:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(56, 189, 248, 0.4);
-        }
-
-        /* ANIMATION KEYFRAMES */
-        @keyframes headerSlideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-18px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes heroTextIn {
-            from {
-                opacity: 0;
-                transform: translateY(24px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes tagAppear {
-            from {
-                opacity: 0;
-                transform: translateY(12px) scale(0.96);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        @keyframes profileAppear {
-            from {
-                opacity: 0;
-                scale: 0.85;
-            }
-            to {
-                opacity: 1;
-                scale: 1;
-            }
-        }
-
-        @keyframes profileFloat {
-            0%, 100% {
-                translate: 0 0;
-            }
-            50% {
-                translate: 0 -12px;
-            }
-        }
-
-        @keyframes gradientFlow {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        @keyframes glowPulse {
-            from {
-                opacity: 0.2;
-                transform: scale(0.96);
-            }
-            to {
-                opacity: 0.5;
-                transform: scale(1.04);
-            }
-        }
-
-        @keyframes nameGlow {
-            from {
-                text-shadow: 0 0 0 rgba(56, 189, 248, 0);
-            }
-            to {
-                text-shadow: 0 0 18px rgba(56, 189, 248, 0.28);
-            }
-        }
-
-        /* SCROLL REVEAL */
-        .reveal-ready {
-            opacity: 0;
-            transform: translateY(24px);
-            transition:
-                opacity 0.65s ease,
-                transform 0.65s ease;
-        }
-
-        .reveal-ready.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 900px) {
-            .nav-links {
-                gap: 12px;
-            }
-
-            .nav-links a {
-                font-size: 12px;
-            }
-
-            .hero-content {
-                gap: 30px;
-            }
-
-            .profile-wrap {
-                width: 230px;
-                height: 230px;
-            }
-
-            .cards {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-        }
-
-        @media (max-width: 720px) {
-            .menu-btn {
-                display: block;
-            }
-
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 72px;
-                left: 0;
-                right: 0;
-                padding: 20px 5%;
-                background: var(--bg);
-                border-bottom: 1px solid var(--border);
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 16px;
-            }
-
-            .nav-links.active {
-                display: flex;
-                animation: menuAppear 0.25s ease both;
-            }
-
-            .nav-links a {
-                font-size: 15px;
-            }
-
-            .hero-content {
-                flex-direction: column-reverse;
-                text-align: center;
-            }
-
-            .hero-buttons {
-                justify-content: center;
-            }
-
-            .hero p {
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .profile-wrap {
-                width: 210px;
-                height: 210px;
-            }
-        }
-
-        @keyframes menuAppear {
-            from {
-                opacity: 0;
-                transform: translateY(-8px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 540px) {
-            section {
-                padding: 60px 0;
-            }
-
-            .cards {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-card {
-                padding: 22px 15px;
-            }
-
-            .profile-wrap {
-                width: 185px;
-                height: 185px;
-            }
-
-            .hero {
-                min-height: auto;
-            }
-        }
-
-        /* ACCESSIBILITY: RESPECT REDUCED-MOTION PREFERENCES */
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                scroll-behavior: auto !important;
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-
-            .reveal-ready {
-                opacity: 1 !important;
-                transform: none !important;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Devender Kumar - Computer Science graduate, Python developer and AI/ML enthusiast.">
+  <title>Devender Kumar | Portfolio</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
-
 <body>
 
-    <!-- NAVIGATION -->
-    <header>
-        <nav class="container">
-            <a href="#home" class="logo">Devender.</a>
+  <div class="scroll-progress" id="scrollProgress"></div>
 
-            <button class="menu-btn" id="menuBtn"
-                    aria-label="Toggle navigation" aria-expanded="false">
-                ☰
-            </button>
+  <header class="header">
+    <nav class="navbar container">
+      <a href="#home" class="logo">Devender<span>.</span></a>
 
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#marketing">Digital Marketing</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#certificates">Certificates</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+      <button class="menu-toggle" id="menuToggle"
+        aria-label="Open navigation menu" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
 
-    <main>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#experience" class="nav-link">Experience</a></li>
+        <li><a href="#marketing" class="nav-link">Digital Marketing</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#certificates" class="nav-link">Certificates</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-        <!-- HERO -->
-        <section class="hero" id="home">
-            <div class="container hero-content">
+  <main>
+    <!-- HOME -->
+    <section class="hero section" id="home">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <p class="eyebrow reveal">WELCOME TO MY PORTFOLIO</p>
 
-                <div class="hero-text">
-                    <span class="tag">Welcome to My Portfolio</span>
+          <h1 class="hero-title reveal">
+            Hi, I'm <span>Devender Kumar</span>
+          </h1>
 
-                    <h1>Hi, I'm <span>Devender Kumar</span></h1>
+          <h2 class="hero-subtitle reveal">
+            I'm a <span id="typingText">Python Developer</span><span class="typing-cursor">|</span>
+          </h2>
 
-                    <h2> Computer Science Graduate </h2>
+          <p class="hero-description reveal">
+            A Computer Science graduate passionate about Python, Artificial
+            Intelligence, Machine Learning and building useful digital solutions.
+          </p>
 
-                    <p>
-                        I am interested in Python programming, Artificial Intelligence,
-                        Machine Learning, and software development and Digital Marketting. I enjoy learning
-                        new technologies and building practical projects to improve
-                        my technical skills.
-                    </p>
+          <div class="hero-buttons reveal">
+            <a href="#projects" class="btn btn-primary">
+              Explore My Work <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="resume.pdf" class="btn btn-outline" target="_blank">
+              <i class="fa-solid fa-download"></i> Download Resume
+            </a>
+          </div>
 
-                    <div class="hero-buttons">
-                        <a href="#experience" class="btn btn-primary">
-                            My Experience
-                        </a>
-
-                        <a href="resume.pdf" class="btn btn-outline"
-                           target="_blank" rel="noopener">
-                            View Resume
-                        </a>
-
-                        <a href="#contact" class="btn btn-outline">
-                            Contact Me
-                        </a>
-                    </div>
-                </div>
-
-                <div class="profile-wrap">
-                    <img src="devender.jpg"
-                         alt="Devender Kumar profile photo">
-                </div>
-
-            </div>
-        </section>
-
-        <!-- ABOUT -->
-        <section id="about">
-            <div class="container">
-                <div class="section-title">
-                    <h2>About <span>Me</span></h2>
-                    <p>My background and professional interests</p>
-                </div>
-
-                <div class="about-content">
-                    <p>
-                        I am Devender Kumar, a Computer Science and Engineering
-                        graduate from Apex University, Jaipur. My interests
-                        include Digital Marketing, Python Programming,
-                        Data Analyst, Software Development,Web Development and
-                        technology-driven business solutions.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- SKILLS & TECHNOLOGIES -->
-        <section id="skills">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Skills & <span>Technologies</span></h2>
-                    <p>My technical, marketing, and communication skills</p>
-                </div>
-
-                <h3 class="skill-category">Digital Marketing Skills</h3>
-                <div class="skills-grid">
-                    <span class="skill">Digital Marketing</span>
-                    <span class="skill">Real Estate Marketing</span>
-                    <span class="skill">Lead Generation</span>
-                    <span class="skill">Social Media Marketing</span>
-                    <span class="skill">Search Engine Optimization (SEO)</span>
-                    <span class="skill">Content Marketing</span>
-                    <span class="skill">Customer Relationship Management</span>
-                    <span class="skill">Telecalling</span>
-                    <span class="skill">Customer Communication</span>
-                    <span class="skill">Lead Follow-up</span>
-                </div>
-
-                <h3 class="skill-category">Programming & Web Technologies</h3>
-                <div class="skills-grid">
-                    <span class="skill">Python</span>
-                    <span class="skill">C Programming</span>
-                    <span class="skill">SQL</span>
-                    <span class="skill">HTML</span>
-                    <span class="skill">CSS</span>
-                    <span class="skill">JavaScript</span>
-                    <span class="skill">Flask</span>
-                </div>
-
-                <h3 class="skill-category">AI & Development Tools</h3>
-                <div class="skills-grid">
-                    <span class="skill">Machine Learning</span>
-                    <span class="skill">Deep Learning</span>
-                    <span class="skill">OpenCV</span>
-                    <span class="skill">Jupyter Notebook</span>
-                    <span class="skill">Visual Studio Code</span>
-                    <span class="skill">GitHub</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- EXPERIENCE -->
-        <section id="experience">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Work <span>Experience</span></h2>
-                    <p>Professional experience and internships</p>
-                </div>
-
-                <div class="cards">
-
-                    <article class="card">
-                        <h3>Digital Marketing & Telecaller</h3>
-                        <p class="date">
-                            Balaji Trading | Real Estate Company
-                        </p>
-
-                        <p><strong>Duration:</strong> 6 Months</p>
-
-                        <p>
-                            Worked on digital marketing and telecalling
-                            activities in the real estate sector, supporting
-                            property enquiries, potential customers, and
-                            lead follow-ups.
-                        </p>
-
-                        <p><strong>Key Responsibilities</strong></p>
-
-                        <ul>
-                            <li>Handled customer calls and property enquiries.</li>
-                            <li>Followed up with prospective customers.</li>
-                            <li>Supported real estate marketing activities.</li>
-                            <li>Communicated property information to leads.</li>
-                            <li>Assisted with lead generation and engagement.</li>
-                        </ul>
-                    </article>
-
-                    <article class="card">
-                        <h3>Python Development</h3>
-                        <p class="date">OctaNet</p>
-                        <p>
-                            Python development learning experience focused
-                            on programming fundamentals and practical tasks.
-                        </p>
-                    </article>
-
-                    <article class="card">
-                        <h3>Generative AI</h3>
-                        <p class="date">Prodigy Infotech</p>
-                        <p>
-                            Learning activities related to Generative AI
-                            and practical technology concepts.
-                        </p>
-                    </article>
-
-                    <article class="card">
-                        <h3>Artificial Intelligence</h3>
-                        <p class="date">Studio</p>
-                        <p>
-                            Exposure to Artificial Intelligence concepts
-                            and project-based learning.
-                        </p>
-                    </article>
-
-                    <article class="card">
-                        <h3>Artificial Intelligence</h3>
-                        <p class="date">CodSoft</p>
-                        <p>
-                            Practice with AI-related concepts and
-                            programming tasks.
-                        </p>
-                    </article>
-
-                    <article class="card">
-                        <h3>Python Development</h3>
-                        <p class="date">Technonet</p>
-                        <p>
-                            Python programming practice and development
-                            learning activities.
-                        </p>
-                    </article>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- PROJECTS -->
-        <section id="projects">
-            <div class="container">
-                <div class="section-title">
-                    <h2>My <span>Projects</span></h2>
-                    <p>Programming and technology projects</p>
-                </div>
-
-                <div class="cards">
-                    <article class="card">
-                        <h3>Smart Attendance System</h3>
-                        <p>
-                            A face-recognition attendance project using
-                            Python and OpenCV to explore face identification
-                            and attendance record management.
-                        </p>
-                    </article>
-
-                    <article class="card">
-                        <h3>Face Detection</h3>
-                        <p>
-                            A computer vision project exploring face
-                            detection and image processing with OpenCV.
-                        </p>
-                    </article>
-
-                    <article class="card">
-                        <h3>Recommendation System</h3>
-                        <p>
-                            A learning project exploring how data can
-                            help suggest relevant items to users.
-                        </p>
-                    </article>
-
-                    <article class="card">
-                        <h3>Tic-Tac-Toe Game</h3>
-                        <p>
-                            A Python game project featuring player turns,
-                            game rules, win conditions, and draw detection.
-                        </p>
-                    </article>
-
-                    <article class="card">
-                        <h3>QR Code Generator</h3>
-                        <p>
-                            A Python project that generates QR codes
-                            from user-provided text or links.
-                        </p>
-                    </article>
-
-                    <article class="card">
-                        <h3>Personal Portfolio</h3>
-                        <p>
-                            A responsive website showcasing my skills,
-                            work experience, projects, and contact details.
-                        </p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- CERTIFICATES -->
-        <section id="certificates">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Certificates & <span>Training</span></h2>
-                    <p>Professional learning and development</p>
-                </div>
-
-                <div class="cards">
-                    <article class="card">
-                        <h3>Python Development</h3>
-                        <p>
-                            Add your verified Python internship certificate
-                            or training details here.
-                        </p>
-                    </article>
-
-                    <article class="card">
-                        <h3>Artificial Intelligence</h3>
-                        <p>
-                            Add your actual Artificial Intelligence
-                            certificate or training details here.
-                        </p>
-                    </article>
-
-                    <article class="card">
-                        <h3>Generative AI</h3>
-                        <p>
-                            Add your actual Generative AI certificate
-                            or verification link here.
-                        </p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- RESUME -->
-        <section id="resume">
-            <div class="container">
-                <div class="section-title">
-                    <h2>My <span>Resume</span></h2>
-                    <p>Learn more about my background and experience</p>
-                </div>
-
-                <div class="about-content">
-                    <p>
-                        View my resume for additional details about my
-                        education, skills, professional experience, and projects.
-                    </p>
-
-                    <div style="margin-top: 25px;">
-                        <a href="resume.pdf" target="_blank"
-                           rel="noopener" class="btn btn-primary">
-                            View Resume PDF
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CONTACT -->
-        <section id="contact">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Contact <span>Me</span></h2>
-                    <p>Let's connect for professional opportunities</p>
-                </div>
-
-                <div class="contact-card">
-                    <p>
-                        Feel free to contact me about job opportunities,
-                        collaborations, or professional enquiries.
-                    </p>
-
-                    <div class="contact-item">
-                        <strong>Phone:</strong>
-                        <a href="tel:+919653571425">9653571425</a>
-                    </div>
-
-                    <div class="contact-item">
-                        <strong>Email:</strong>
-                        <a href="mailto:yadav.devender2005@gmail.com">
-                            yadav.devender2005@gmail.com
-                        </a>
-                    </div>
-
-                    <div class="contact-buttons">
-                        <a href="tel:+919653571425"
-                           class="btn btn-primary">
-                            Call Me
-                        </a>
-
-                        <a href="https://wa.me/919653571425"
-                           target="_blank" rel="noopener"
-                           class="btn btn-outline">
-                            WhatsApp
-                        </a>
-
-                        <a href="mailto:yadav.devender2005@gmail.com"
-                           class="btn btn-outline">
-                            Send Email
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="container">
-            <p>
-                © <span id="year"></span> Devender Kumar.
-                All rights reserved.
-            </p>
+          <div class="social-links reveal">
+            <!-- Replace # with your actual profile links -->
+            <a href="#" aria-label="GitHub" title="GitHub">
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="#" aria-label="LinkedIn" title="LinkedIn">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a href="mailto:yadav.devender2005@gmail.com"
+              aria-label="Email" title="Email">
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+          </div>
         </div>
-    </footer>
 
-    <button id="backToTop" aria-label="Back to top">↑</button>
+        <div class="hero-visual reveal">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
 
-    <script>
-        // Mobile menu
-        const menuBtn = document.getElementById("menuBtn");
-        const navLinks = document.getElementById("navLinks");
+          <div class="profile-card">
+            <div class="profile-image-wrap">
+              <img src="devender.jpg" alt="Devender Kumar"
+                class="profile-image"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
+              <div class="profile-placeholder">
+                <i class="fa-solid fa-user"></i>
+              </div>
+            </div>
+            <div class="profile-info">
+              <h3>Devender Kumar</h3>
+              <p>Computer Science Graduate</p>
+              <div class="availability">
+                <span></span> Open to opportunities
+              </div>
+            </div>
+          </div>
 
-        menuBtn.addEventListener("click", function () {
-            const isOpen = navLinks.classList.toggle("active");
-            menuBtn.setAttribute("aria-expanded", isOpen);
-            menuBtn.textContent = isOpen ? "✕" : "☰";
-        });
+          <div class="floating-badge badge-python">
+            <i class="fa-brands fa-python"></i> Python
+          </div>
+          <div class="floating-badge badge-ai">
+            <i class="fa-solid fa-brain"></i> AI / ML
+          </div>
+          <div class="floating-badge badge-code">
+            <i class="fa-solid fa-code"></i> Developer
+          </div>
+        </div>
+      </div>
 
-        // Close menu after selecting a section
-        document.querySelectorAll(".nav-links a").forEach(function (link) {
-            link.addEventListener("click", function () {
-                navLinks.classList.remove("active");
-                menuBtn.setAttribute("aria-expanded", "false");
-                menuBtn.textContent = "☰";
-            });
-        });
+      <a href="#about" class="scroll-down" aria-label="Scroll to About">
+        <i class="fa-solid fa-angles-down"></i>
+      </a>
+    </section>
 
-        // Automatic copyright year
-        document.getElementById("year").textContent =
-            new Date().getFullYear();
+    <!-- ABOUT -->
+    <section class="section section-alt" id="about">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">GET TO KNOW ME</p>
+          <h2>About <span>Me</span></h2>
+          <p>A little introduction about my journey and interests.</p>
+        </div>
 
-        // Back to top button
-        const backToTop = document.getElementById("backToTop");
+        <div class="about-grid">
+          <div class="about-text reveal">
+            <h3>Building my future through technology</h3>
+            <p>
+              I am Devender Kumar, a Computer Science graduate from Apex
+              University, Jaipur. I am interested in Python development,
+              Artificial Intelligence, Machine Learning and software development.
+            </p>
+            <p>
+              I enjoy learning new technologies, solving problems and creating
+              projects that combine creativity with practical functionality.
+              I am a responsible, adaptable and quick learner who enjoys
+              working independently as well as in a team.
+            </p>
+            <a href="#contact" class="text-link">
+              Let's connect <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
 
-        window.addEventListener("scroll", function () {
-            backToTop.style.display =
-                window.scrollY > 300 ? "block" : "none";
-        });
+          <div class="about-cards">
+            <article class="info-card reveal">
+              <div class="info-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+              <h3>Education</h3>
+              <p>B.Tech in Computer Science</p>
+              <span>Apex University, Jaipur</span>
+            </article>
 
-        backToTop.addEventListener("click", function () {
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-        });
+            <article class="info-card reveal">
+              <div class="info-icon"><i class="fa-solid fa-laptop-code"></i></div>
+              <h3>Interests</h3>
+              <p>Python, AI and ML</p>
+              <span>Software & Web Development</span>
+            </article>
 
-        // Scroll reveal animation
-        const revealElements = document.querySelectorAll(
-            "#about .section-title, " +
-            "#about .about-content, " +
-            "#skills .section-title, " +
-            "#skills .skill-category, " +
-            "#skills .skill, " +
-            "#experience .section-title, " +
-            "#experience .card, " +
-            "#projects .section-title, " +
-            "#projects .card, " +
-            "#certificates .section-title, " +
-            "#certificates .card, " +
-            "#resume .section-title, " +
-            "#resume .about-content, " +
-            "#contact .section-title, " +
-            "#contact .contact-card"
-        );
+            <article class="info-card reveal">
+              <div class="info-icon"><i class="fa-solid fa-lightbulb"></i></div>
+              <h3>Strengths</h3>
+              <p>Problem Solving</p>
+              <span>Adaptability & Teamwork</span>
+            </article>
 
-        const reduceMotion = window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-        ).matches;
+            <article class="info-card reveal">
+              <div class="info-icon"><i class="fa-solid fa-rocket"></i></div>
+              <h3>Goal</h3>
+              <p>Continuous Learning</p>
+              <span>Building practical solutions</span>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        if ("IntersectionObserver" in window && !reduceMotion) {
-            revealElements.forEach(function (element, index) {
-                element.classList.add("reveal-ready");
-                element.style.transitionDelay =
-                    (index % 3) * 100 + "ms";
-            });
+    <!-- SKILLS -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">WHAT I WORK WITH</p>
+          <h2>My <span>Skills</span></h2>
+          <p>Technologies and tools I have learned and used in projects.</p>
+        </div>
 
-            const revealObserver = new IntersectionObserver(
-                function (entries, observer) {
-                    entries.forEach(function (entry) {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add("is-visible");
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                },
-                {
-                    threshold: 0.12,
-                    rootMargin: "0px 0px -30px 0px"
-                }
-            );
+        <div class="skills-grid">
+          <article class="skill-card reveal">
+            <div class="skill-title">
+              <i class="fa-brands fa-python"></i>
+              <h3>Python</h3>
+            </div>
+            <p>Programming fundamentals, problem solving and project development.</p>
+            <div class="skill-track"><span data-width="80%"></span></div>
+          </article>
 
-            revealElements.forEach(function (element) {
-                revealObserver.observe(element);
-            });
-        } else {
-            // Keep everything visible if animations are unsupported
-            // or the visitor prefers reduced motion.
-            revealElements.forEach(function (element) {
-                element.classList.add("is-visible");
-            });
-        }
-    </script>
-<script src="script.js"></script>
+          <article class="skill-card reveal">
+            <div class="skill-title">
+              <i class="fa-solid fa-c"></i>
+              <h3>C Programming</h3>
+            </div>
+            <p>Programming logic, fundamentals and basic data structures.</p>
+            <div class="skill-track"><span data-width="70%"></span></div>
+          </article>
+
+          <article class="skill-card reveal">
+            <div class="skill-title">
+              <i class="fa-solid fa-database"></i>
+              <h3>SQL</h3>
+            </div>
+            <p>Database concepts, queries and relational data handling.</p>
+            <div class="skill-track"><span data-width="65%"></span></div>
+          </article>
+
+          <article class="skill-card reveal">
+            <div class="skill-title">
+              <i class="fa-solid fa-brain"></i>
+              <h3>AI & Machine Learning</h3>
+            </div>
+            <p>Fundamentals and introductory machine learning projects.</p>
+            <div class="skill-track"><span data-width="65%"></span></div>
+          </article>
+
+          <article class="skill-card reveal">
+            <div class="skill-title">
+              <i class="fa-solid fa-globe"></i>
+              <h3>Web Development</h3>
+            </div>
+            <p>HTML, CSS, JavaScript and basic responsive website development.</p>
+            <div class="skill-track"><span data-width="65%"></span></div>
+          </article>
+
+          <article class="skill-card reveal">
+            <div class="skill-title">
+              <i class="fa-solid fa-screwdriver-wrench"></i>
+              <h3>Tools</h3>
+            </div>
+            <p>VS Code, Jupyter Notebook, Git and development tools.</p>
+            <div class="skill-track"><span data-width="70%"></span></div>
+          </article>
+        </div>
+        <p class="skill-note reveal">
+          Skill bars are illustrative self-assessments. Adjust them to reflect your actual proficiency.
+        </p>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="section section-alt" id="experience">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">MY PROFESSIONAL JOURNEY</p>
+          <h2>Internship <span>Experience</span></h2>
+          <p>Learning through practical assignments and project work.</p>
+        </div>
+
+        <div class="timeline">
+          <article class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <span class="timeline-tag">Python Development</span>
+              <h3>OctaNet Services</h3>
+              <p>Worked on Python development tasks and programming exercises.</p>
+            </div>
+          </article>
+
+          <article class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <span class="timeline-tag">Generative AI</span>
+              <h3>Prodigy Infotech</h3>
+              <p>Explored generative artificial intelligence concepts and related tasks.</p>
+            </div>
+          </article>
+
+          <article class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <span class="timeline-tag">Artificial Intelligence</span>
+              <h3>Studio Artificial Intelligence</h3>
+              <p>Gained exposure to AI concepts and project-based learning.</p>
+            </div>
+          </article>
+
+          <article class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <span class="timeline-tag">Artificial Intelligence</span>
+              <h3>CodSoft</h3>
+              <p>Practised AI-related tasks and developed programming skills.</p>
+            </div>
+          </article>
+
+          <article class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <span class="timeline-tag">Python Development</span>
+              <h3>Technonet</h3>
+              <p>Worked on Python exercises and practical development activities.</p>
+            </div>
+          </article>
+        </div>
+        <p class="skill-note reveal">
+          Update the descriptions and dates to match your actual internship certificates and work.
+        </p>
+      </div>
+    </section>
+
+    <!-- DIGITAL MARKETING -->
+    <section class="section" id="marketing">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">ONLINE PRESENCE</p>
+          <h2>Digital <span>Marketing</span></h2>
+          <p>Exploring how technology and online platforms help people and businesses grow.</p>
+        </div>
+
+        <div class="marketing-grid">
+          <article class="marketing-card reveal">
+            <div class="marketing-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+            <h3>Search Engine Optimization</h3>
+            <p>Learning website structure, relevant content and search visibility fundamentals.</p>
+          </article>
+          <article class="marketing-card reveal">
+            <div class="marketing-icon"><i class="fa-solid fa-hashtag"></i></div>
+            <h3>Social Media</h3>
+            <p>Understanding online engagement, content planning and social platforms.</p>
+          </article>
+          <article class="marketing-card reveal">
+            <div class="marketing-icon"><i class="fa-solid fa-chart-line"></i></div>
+            <h3>Digital Analytics</h3>
+            <p>Exploring how data can help understand visitors and improve online experiences.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section section-alt" id="projects">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">WHAT I HAVE BUILT</p>
+          <h2>My <span>Projects</span></h2>
+          <p>A selection of projects created while learning and practising technology.</p>
+        </div>
+
+        <div class="projects-grid">
+          <article class="project-card reveal">
+            <div class="project-visual visual-python">
+              <i class="fa-solid fa-gamepad"></i>
+              <span>PYTHON</span>
+            </div>
+            <div class="project-content">
+              <h3>Tic-Tac-Toe Game</h3>
+              <p>A Python game featuring player turns, win and draw detection, and input validation.</p>
+              <div class="tag-list"><span>Python</span><span>Logic</span><span>UI</span></div>
+              <a href="#contact" class="project-link">Ask about project <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-visual visual-ai">
+              <i class="fa-solid fa-user-check"></i>
+              <span>COMPUTER VISION</span>
+            </div>
+            <div class="project-content">
+              <h3>Face Detection System</h3>
+              <p>A computer vision project exploring image processing and face detection with OpenCV.</p>
+              <div class="tag-list"><span>Python</span><span>OpenCV</span><span>AI</span></div>
+              <a href="#contact" class="project-link">Ask about project <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-visual visual-recommend">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <span>MACHINE LEARNING</span>
+            </div>
+            <div class="project-content">
+              <h3>Recommendation System</h3>
+              <p>A learning project exploring how recommendations can be generated from data and preferences.</p>
+              <div class="tag-list"><span>Python</span><span>ML</span><span>Data</span></div>
+              <a href="#contact" class="project-link">Ask about project <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-visual visual-web">
+              <i class="fa-solid fa-laptop-code"></i>
+              <span>WEB DEVELOPMENT</span>
+            </div>
+            <div class="project-content">
+              <h3>Personal Portfolio</h3>
+              <p>A responsive portfolio website showcasing skills, projects, experience and contact information.</p>
+              <div class="tag-list"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+              <a href="#home" class="project-link">View portfolio <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-visual visual-qr">
+              <i class="fa-solid fa-qrcode"></i>
+              <span>UTILITY TOOL</span>
+            </div>
+            <div class="project-content">
+              <h3>QR Code Generator</h3>
+              <p>A utility project that converts supplied text or links into QR codes.</p>
+              <div class="tag-list"><span>Python</span><span>QR Code</span></div>
+              <a href="#contact" class="project-link">Ask about project <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-visual visual-dice">
+              <i class="fa-solid fa-dice"></i>
+              <span>PYTHON</span>
+            </div>
+            <div class="project-content">
+              <h3>Rolling Dice</h3>
+              <p>A simple interactive dice simulator using random number generation.</p>
+              <div class="tag-list"><span>Python</span><span>Random</span></div>
+              <a href="#contact" class="project-link">Ask about project <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATES -->
+    <section class="section" id="certificates">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">LEARNING & DEVELOPMENT</p>
+          <h2>My <span>Certificates</span></h2>
+          <p>Training and internship credentials.</p>
+        </div>
+
+        <div class="certificates-grid">
+          <article class="certificate-card reveal">
+            <div class="certificate-icon"><i class="fa-solid fa-award"></i></div>
+            <div><h3>Python Development</h3><p>OctaNet Services</p></div>
+          </article>
+          <article class="certificate-card reveal">
+            <div class="certificate-icon"><i class="fa-solid fa-award"></i></div>
+            <div><h3>Generative AI</h3><p>Prodigy Infotech</p></div>
+          </article>
+          <article class="certificate-card reveal">
+            <div class="certificate-icon"><i class="fa-solid fa-award"></i></div>
+            <div><h3>Artificial Intelligence</h3><p>Studio AI / CodSoft</p></div>
+          </article>
+          <article class="certificate-card reveal">
+            <div class="certificate-icon"><i class="fa-solid fa-award"></i></div>
+            <div><h3>Python Development</h3><p>Technonet</p></div>
+          </article>
+        </div>
+        <p class="skill-note reveal">
+          Add your actual certificate images or verification links before publishing.
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section section-alt" id="contact">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">LET'S CONNECT</p>
+          <h2>Contact <span>Me</span></h2>
+          <p>Have an opportunity, project or idea? Feel free to get in touch.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-info reveal">
+            <h3>Let's work together</h3>
+            <p>I am interested in learning, collaborating and exploring suitable opportunities in technology.</p>
+
+            <a class="contact-item" href="mailto:yadav.devender2005@gmail.com">
+              <span class="contact-icon"><i class="fa-solid fa-envelope"></i></span>
+              <span><small>Email</small><strong>yadav.devender2005@gmail.com</strong></span>
+            </a>
+
+            <a class="contact-item" href="tel:+910000000000">
+              <span class="contact-icon"><i class="fa-solid fa-phone"></i></span>
+              <span><small>Phone</small><strong>Update with your number</strong></span>
+            </a>
+
+            <div class="contact-item">
+              <span class="contact-icon"><i class="fa-solid fa-location-dot"></i></span>
+              <span><small>Location</small><strong>Haryana, India</strong></span>
+            </div>
+          </div>
+
+          <form class="contact-form reveal" id="contactForm">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+            <label for="email">Your Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" rows="5"
+              placeholder="Write your message..." required></textarea>
+
+            <button class="btn btn-primary" type="submit">
+              Send via Email <i class="fa-solid fa-paper-plane"></i>
+            </button>
+            <p class="form-note" id="formNote" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a href="#home" class="logo">Devender<span>.</span></a>
+      <p>Designed and built by Devender Kumar.</p>
+      <p>© <span id="currentYear"></span> All rights reserved.</p>
+    </div>
+  </footer>
+
+  <button id="backToTop" class="back-to-top" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <script src="script.js"></script>
 </body>
 </html>
-```
