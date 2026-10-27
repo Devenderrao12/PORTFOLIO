@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,6 +30,7 @@
             background: var(--bg);
             color: var(--text);
             line-height: 1.7;
+            overflow-x: hidden;
         }
 
         a {
@@ -49,6 +50,7 @@
             background: rgba(11, 17, 32, 0.96);
             border-bottom: 1px solid var(--border);
             backdrop-filter: blur(12px);
+            animation: headerSlideDown 0.7s ease both;
         }
 
         nav {
@@ -63,6 +65,12 @@
             font-size: 24px;
             font-weight: bold;
             color: var(--primary);
+            transition: transform 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            text-shadow: 0 0 18px rgba(56, 189, 248, 0.55);
         }
 
         .nav-links {
@@ -73,13 +81,29 @@
         }
 
         .nav-links a {
+            position: relative;
             color: var(--muted);
             font-size: 13px;
-            transition: 0.3s;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
         }
 
         .nav-links a:hover {
             color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .menu-btn {
@@ -89,6 +113,11 @@
             color: white;
             font-size: 28px;
             cursor: pointer;
+            transition: transform 0.25s ease;
+        }
+
+        .menu-btn:hover {
+            transform: scale(1.1);
         }
 
         /* HERO */
@@ -109,6 +138,7 @@
 
         .hero-text {
             flex: 1;
+            animation: heroTextIn 0.9s ease both;
         }
 
         .tag {
@@ -120,12 +150,14 @@
             background: var(--card);
             font-size: 13px;
             margin-bottom: 20px;
+            animation: tagAppear 0.8s ease 0.15s both;
         }
 
         .hero h1 {
             font-size: clamp(38px, 5vw, 62px);
             line-height: 1.2;
             margin-bottom: 14px;
+            animation: heroTextIn 0.9s ease 0.1s both;
         }
 
         .hero h1 span,
@@ -133,16 +165,23 @@
             color: var(--primary);
         }
 
+        .hero h1 span {
+            display: inline-block;
+            animation: nameGlow 3s ease-in-out infinite alternate;
+        }
+
         .hero h2 {
             font-size: clamp(19px, 3vw, 26px);
             color: var(--secondary);
             margin-bottom: 18px;
+            animation: heroTextIn 0.9s ease 0.2s both;
         }
 
         .hero p {
             max-width: 650px;
             color: var(--muted);
             margin-bottom: 26px;
+            animation: heroTextIn 0.9s ease 0.3s both;
         }
 
         .hero-buttons,
@@ -152,13 +191,21 @@
             gap: 12px;
         }
 
+        .hero-buttons {
+            animation: heroTextIn 0.9s ease 0.4s both;
+        }
+
         .btn {
             display: inline-block;
             padding: 11px 20px;
             border-radius: 8px;
             font-weight: bold;
             border: 1px solid var(--primary);
-            transition: 0.3s;
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease,
+                background 0.3s ease,
+                color 0.3s ease;
             cursor: pointer;
         }
 
@@ -172,17 +219,57 @@
         }
 
         .btn:hover {
-            transform: translateY(-3px);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(56, 189, 248, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: #7dd3fc;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: #07111f;
         }
 
         .profile-wrap {
+            position: relative;
+            isolation: isolate;
             flex-shrink: 0;
             width: 285px;
             height: 285px;
             padding: 7px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(
+                135deg,
+                var(--primary),
+                var(--secondary),
+                #c084fc,
+                var(--primary)
+            );
+            background-size: 300% 300%;
             box-shadow: 0 0 40px rgba(56, 189, 248, 0.16);
+            animation:
+                profileFloat 4s ease-in-out infinite,
+                gradientFlow 6s ease infinite,
+                profileAppear 1s ease 0.2s both;
+        }
+
+        .profile-wrap::before {
+            content: "";
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            background: linear-gradient(
+                135deg,
+                var(--primary),
+                transparent,
+                var(--secondary)
+            );
+            opacity: 0.3;
+            filter: blur(18px);
+            z-index: -1;
+            animation: glowPulse 3s ease-in-out infinite alternate;
         }
 
         .profile-wrap img {
@@ -192,6 +279,11 @@
             object-fit: cover;
             border-radius: 50%;
             border: 5px solid var(--bg);
+            transition: transform 0.5s ease;
+        }
+
+        .profile-wrap:hover img {
+            transform: scale(1.035);
         }
 
         /* SECTIONS */
@@ -234,22 +326,53 @@
         }
 
         .card {
+            position: relative;
             min-width: 0;
+            overflow: hidden;
             background: var(--card);
             border: 1px solid var(--border);
             border-radius: 14px;
             padding: 24px;
-            transition: 0.3s;
+            transition:
+                transform 0.35s ease,
+                border-color 0.35s ease,
+                box-shadow 0.35s ease;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -110%;
+            width: 70%;
+            height: 2px;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                var(--primary),
+                transparent
+            );
+            transition: left 0.55s ease;
         }
 
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-7px);
             border-color: var(--primary);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .card:hover::before {
+            left: 140%;
         }
 
         .card h3 {
             font-size: 19px;
             margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .card:hover h3 {
+            color: var(--primary);
         }
 
         .card p {
@@ -296,12 +419,18 @@
             border: 1px solid var(--border);
             border-radius: 9px;
             color: var(--text);
-            transition: 0.3s;
+            transition:
+                transform 0.3s ease,
+                border-color 0.3s ease,
+                color 0.3s ease,
+                box-shadow 0.3s ease;
         }
 
         .skill:hover {
+            transform: translateY(-4px) scale(1.025);
             border-color: var(--primary);
             color: var(--primary);
+            box-shadow: 0 6px 18px rgba(56, 189, 248, 0.1);
         }
 
         .skill-category {
@@ -309,6 +438,11 @@
             font-size: 20px;
             margin: 30px 0 16px;
             text-align: center;
+            transition: color 0.3s ease;
+        }
+
+        .skill-category:hover {
+            color: var(--primary);
         }
 
         /* CONTACT */
@@ -320,6 +454,14 @@
             border: 1px solid var(--border);
             border-radius: 16px;
             text-align: center;
+            transition:
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .contact-card:hover {
+            border-color: rgba(56, 189, 248, 0.65);
+            box-shadow: 0 12px 35px rgba(56, 189, 248, 0.08);
         }
 
         .contact-card > p {
@@ -338,6 +480,10 @@
             margin-right: 8px;
         }
 
+        .contact-item a {
+            transition: color 0.3s ease;
+        }
+
         .contact-item a:hover {
             color: var(--primary);
         }
@@ -353,6 +499,11 @@
             color: var(--muted);
             border-top: 1px solid var(--border);
             font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        footer:hover {
+            color: var(--text);
         }
 
         #backToTop {
@@ -369,6 +520,115 @@
             cursor: pointer;
             display: none;
             z-index: 999;
+            box-shadow: 0 4px 18px rgba(56, 189, 248, 0.25);
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        #backToTop:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(56, 189, 248, 0.4);
+        }
+
+        /* ANIMATION KEYFRAMES */
+        @keyframes headerSlideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-18px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes heroTextIn {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes tagAppear {
+            from {
+                opacity: 0;
+                transform: translateY(12px) scale(0.96);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes profileAppear {
+            from {
+                opacity: 0;
+                scale: 0.85;
+            }
+            to {
+                opacity: 1;
+                scale: 1;
+            }
+        }
+
+        @keyframes profileFloat {
+            0%, 100% {
+                translate: 0 0;
+            }
+            50% {
+                translate: 0 -12px;
+            }
+        }
+
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes glowPulse {
+            from {
+                opacity: 0.2;
+                transform: scale(0.96);
+            }
+            to {
+                opacity: 0.5;
+                transform: scale(1.04);
+            }
+        }
+
+        @keyframes nameGlow {
+            from {
+                text-shadow: 0 0 0 rgba(56, 189, 248, 0);
+            }
+            to {
+                text-shadow: 0 0 18px rgba(56, 189, 248, 0.28);
+            }
+        }
+
+        /* SCROLL REVEAL */
+        .reveal-ready {
+            opacity: 0;
+            transform: translateY(24px);
+            transition:
+                opacity 0.65s ease,
+                transform 0.65s ease;
+        }
+
+        .reveal-ready.is-visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* RESPONSIVE */
@@ -416,6 +676,7 @@
 
             .nav-links.active {
                 display: flex;
+                animation: menuAppear 0.25s ease both;
             }
 
             .nav-links a {
@@ -442,6 +703,17 @@
             }
         }
 
+        @keyframes menuAppear {
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         @media (max-width: 540px) {
             section {
                 padding: 60px 0;
@@ -462,6 +734,23 @@
 
             .hero {
                 min-height: auto;
+            }
+        }
+
+        /* ACCESSIBILITY: RESPECT REDUCED-MOTION PREFERENCES */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .reveal-ready {
+                opacity: 1 !important;
+                transform: none !important;
             }
         }
     </style>
@@ -506,7 +795,7 @@
                     <h2> Computer Science Graduate </h2>
 
                     <p>
-                          I am interested in Python programming, Artificial Intelligence,
+                        I am interested in Python programming, Artificial Intelligence,
                         Machine Learning, and software development and Digital Marketting. I enjoy learning
                         new technologies and building practical projects to improve
                         my technical skills.
@@ -906,6 +1195,62 @@
                 behavior: "smooth"
             });
         });
+
+        // Scroll reveal animation
+        const revealElements = document.querySelectorAll(
+            "#about .section-title, " +
+            "#about .about-content, " +
+            "#skills .section-title, " +
+            "#skills .skill-category, " +
+            "#skills .skill, " +
+            "#experience .section-title, " +
+            "#experience .card, " +
+            "#projects .section-title, " +
+            "#projects .card, " +
+            "#certificates .section-title, " +
+            "#certificates .card, " +
+            "#resume .section-title, " +
+            "#resume .about-content, " +
+            "#contact .section-title, " +
+            "#contact .contact-card"
+        );
+
+        const reduceMotion = window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+        if ("IntersectionObserver" in window && !reduceMotion) {
+            revealElements.forEach(function (element, index) {
+                element.classList.add("reveal-ready");
+                element.style.transitionDelay =
+                    (index % 3) * 100 + "ms";
+            });
+
+            const revealObserver = new IntersectionObserver(
+                function (entries, observer) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("is-visible");
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                },
+                {
+                    threshold: 0.12,
+                    rootMargin: "0px 0px -30px 0px"
+                }
+            );
+
+            revealElements.forEach(function (element) {
+                revealObserver.observe(element);
+            });
+        } else {
+            // Keep everything visible if animations are unsupported
+            // or the visitor prefers reduced motion.
+            revealElements.forEach(function (element) {
+                element.classList.add("is-visible");
+            });
+        }
     </script>
 
 </body>
