@@ -1,127 +1,97 @@
-// ==================== AOS INIT ====================
-AOS.init({
-    duration: 800,
-    once: true,
-    offset: 60
+
+// Mobile menu
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+menuBtn.addEventListener("click", function () {
+    const isOpen = navLinks.classList.toggle("active");
+
+    menuBtn.setAttribute("aria-expanded", isOpen);
+    menuBtn.textContent = isOpen ? "✕" : "☰";
 });
 
-// ==================== TYPED.JS ====================
-if (document.getElementById('typing')) {
-    new Typed('#typing', {
-        strings: [
-            'Software Developer',
-            'Python Developer',
-            'AI / ML Enthusiast',
-            'Data Analyst'
-        ],
-        typeSpeed: 55,
-        backSpeed: 30,
-        backDelay: 1500,
-        loop: true
+// Close menu after selecting a section
+document.querySelectorAll(".nav-links a").forEach(function (link) {
+    link.addEventListener("click", function () {
+        navLinks.classList.remove("active");
+        menuBtn.setAttribute("aria-expanded", "false");
+        menuBtn.textContent = "☰";
     });
-}
+});
 
-// ==================== MOBILE NAV TOGGLE ====================
-const menuBtn = document.querySelector('.menu-btn');
-const navbar = document.querySelector('.navbar');
+// Automatic copyright year
+document.getElementById("year").textContent =
+    new Date().getFullYear();
 
-if (menuBtn && navbar) {
-    menuBtn.addEventListener('click', () => {
-        navbar.classList.toggle('active');
-        const icon = menuBtn.querySelector('i');
-        icon.classList.toggle('fa-bars');
-        icon.classList.toggle('fa-xmark');
+// Back to top button
+const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll", function () {
+    backToTop.style.display =
+        window.scrollY > 300 ? "block" : "none";
+});
+
+backToTop.addEventListener("click", function () {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+
+// Scroll reveal animation
+const revealElements = document.querySelectorAll(
+    "#about .section-title, " +
+    "#about .about-content, " +
+    "#skills .section-title, " +
+    "#skills .skill-category, " +
+    "#skills .skill, " +
+    "#experience .section-title, " +
+    "#experience .card, " +
+    "#projects .section-title, " +
+    "#projects .card, " +
+    "#certificates .section-title, " +
+    "#certificates .card, " +
+    "#resume .section-title, " +
+    "#resume .about-content, " +
+    "#contact .section-title, " +
+    "#contact .contact-card"
+);
+
+const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+).matches;
+
+if ("IntersectionObserver" in window && !reduceMotion) {
+    revealElements.forEach(function (element, index) {
+        element.classList.add("reveal-ready");
+
+        element.style.transitionDelay =
+            (index % 3) * 100 + "ms";
     });
 
-    // Close menu when a link is clicked (mobile)
-    document.querySelectorAll('.navbar a').forEach(link => {
-        link.addEventListener('click', () => {
-            navbar.classList.remove('active');
-            const icon = menuBtn.querySelector('i');
-            icon.classList.add('fa-bars');
-            icon.classList.remove('fa-xmark');
-        });
-    });
-}
-
-// ==================== ACTIVE LINK ON SCROLL ====================
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.navbar a');
-
-function setActiveLink() {
-    let current = '';
-    const scrollY = window.pageYOffset;
-
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop - 120;
-        const sectionHeight = section.offsetHeight;
-        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-            current = section.getAttribute('id');
+    const revealObserver = new IntersectionObserver(
+        function (entries, observer) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("is-visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        {
+            threshold: 0.12,
+            rootMargin: "0px 0px -30px 0px"
         }
+    );
+
+    revealElements.forEach(function (element) {
+        revealObserver.observe(element);
     });
-
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-        }
-    });
-}
-
-window.addEventListener('scroll', setActiveLink);
-
-// ==================== HEADER SHADOW ON SCROLL ====================
-const header = document.querySelector('.header');
-
-function toggleHeaderShadow() {
-    if (window.scrollY > 20) {
-        header.style.boxShadow = '0 10px 30px -15px rgba(0,0,0,0.5)';
-    } else {
-        header.style.boxShadow = 'none';
-    }
-}
-
-window.addEventListener('scroll', toggleHeaderShadow);
-
-// ==================== SCROLL TO TOP BUTTON ====================
-const scrollTopBtn = document.getElementById('scrollTop');
-
-function toggleScrollTopBtn() {
-    if (window.scrollY > 400) {
-        scrollTopBtn.classList.add('show');
-    } else {
-        scrollTopBtn.classList.remove('show');
-    }
-}
-
-window.addEventListener('scroll', toggleScrollTopBtn);
-
-if (scrollTopBtn) {
-    scrollTopBtn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+} else {
+    // Keep content visible if animation is unsupported
+    // or the visitor prefers reduced motion.
+    revealElements.forEach(function (element) {
+        element.classList.add("is-visible");
     });
 }
-
-// ==================== CONTACT FORM (front-end only) ====================
-// NOTE: This currently only validates and resets the form in the browser.
-// To actually receive messages, connect this form to a service like
-// Formspree, EmailJS, or your own backend endpoint.
-const contactForm = document.getElementById('contactForm');
-
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        const submitBtn = contactForm.querySelector('button[type="submit"]');
-        const originalText = submitBtn.innerHTML;
-
-        submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Noted';
-        submitBtn.disabled = true;
-
-        setTimeout(() => {
-            contactForm.reset();
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
-        }, 2000);
-    });
-}
+```
